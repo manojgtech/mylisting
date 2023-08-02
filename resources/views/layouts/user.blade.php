@@ -82,9 +82,50 @@
    <footer class="bg-light py-5">
             <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2023 - Company Name</div></div>
         </footer>
-        <script src="node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
+       
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    </body>
+<script src="https://cdn.ckeditor.com/ckeditor5/38.1.1/classic/ckeditor.js"></script>
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#descriptioneditor' ), {
+        toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+        heading: {
+            options: [
+                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+            ]
+        }
+    } )
+    .catch( error => {
+        console.log( error );
+    } );
+</script>  
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script >
+$(function() {
+// Multiple images preview with JavaScript
+var previewImages = function(input, imgPreviewPlaceholder) {
+if (input.files) {
+var filesAmount = input.files.length;
+for (i = 0; i < filesAmount; i++) {
+var reader = new FileReader();
+reader.onload = function(event) {
+$($.parseHTML('<img width="150">')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
+}
+reader.readAsDataURL(input.files[i]);
+}
+}
+};
+$('#images').on('change', function() {
+previewImages(this, 'div.images-preview-div');
+});
+});
+</script>
+
+ 
+</body>
 </html>
 

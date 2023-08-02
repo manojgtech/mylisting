@@ -30,3 +30,5 @@ Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'userdashb
 Route::get('/profile', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');
 Route::get('/add-listing', [App\Http\Controllers\UserController::class, 'addListing']);
 Route::post('/add-listing', [App\Http\Controllers\UserController::class, 'saveListing']);
+Route::post('/uploadimg',  [App\Http\Controllers\UserController::class, 'uploadimg']);
+Route::get('/user/listings',  [App\Http\Controllers\UserController::class, 'listings']);

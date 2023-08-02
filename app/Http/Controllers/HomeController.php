@@ -44,7 +44,7 @@ class HomeController extends Controller
             'password' => 'min:8|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'min:8'
             ]);
-            print_r($validatedData);
+        
            $user=new User;
            $hashedPassword = Hash::make($validatedData['password']);
            $user->name=$validatedData['name'];

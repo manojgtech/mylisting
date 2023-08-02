@@ -8,14 +8,19 @@
                 <div class="card-header">{{ __('Add Your Listing') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{url('add-listing')}}">
+                @if( Session::has( 'success' ))
+     {{ Session::get( 'success' ) }}
+@elseif( Session::has( 'warning' ))
+     {{ Session::get( 'warning' ) }} 
+@endif
+                    <form method="POST" action="{{url('add-listing')}}" files="true" enctype="multipart/form-data"  id="image-upload">
                         @csrf
 
                         <div class="row mb-3">
                             <label for="category" class="col-md-4 col-form-label text-md-end">{{ __('Business Categories') }}</label>
 
                             <div class="col-md-6">
-                                <select id="category"  class="form-control @error('name') is-invalid @enderror" name="name"  required autocomplete="name" autofocus>
+                                <select id="category"  class="form-control @error('category') is-invalid @enderror" name="category"  required  autofocus>
                                     <option>Select Category</option>
                                   @foreach($cats as $key => $val)
                                     <option value={{$val}}>{{$key}}</option>
@@ -64,7 +69,7 @@
                             <label for="category" class="col-md-4 col-form-label text-md-end">{{ __('State') }}</label>
 
                             <div class="col-md-6">
-                                <select id="state"  class="form-control @error('state') is-invalid @enderror" name="state"  required autocomplete="name" autofocus>
+                                <select id="state"  class="form-control @error('state') is-invalid @enderror" name="state"  required autofocus>
                                     <option>Select Category</option>
                                   @foreach($states as $key => $val)
                                     <option value={{$val}}>{{$key}}</option>
@@ -146,14 +151,31 @@
                             <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Description') }}</label>
 
                             <div class="col-md-6">
-                                <textarea type="description" id="description"  class="form-control @error('description') is-invalid @enderror" name="description"  required autocomplete="description" autofocus>
-                                </textarea>
-
+                                 <textarea type="description" id="descriptioneditor"  class="form-control @error('description') is-invalid @enderror" name="description"  required autocomplete="description" autofocus>
+                                </textarea> 
+                                                             
+                                
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Images') }}</label>
+                            <div class="col-md-6">
+                            <input type="file" id="images"  class="form-control @error('images') is-invalid @enderror" name="images[]" autofocus multiple>
+            
+                                @error('images')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                <div class="mt-1 text-center">
+                    <div class="images-preview-div"> </div>
+                        </div>
                             </div>
                         </div>
                        

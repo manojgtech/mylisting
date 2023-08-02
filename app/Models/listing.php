@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class listing extends Model
 {
     use HasFactory;
+    protected $fillable=['category','title','city','state','description'];
+    
+    
 }
