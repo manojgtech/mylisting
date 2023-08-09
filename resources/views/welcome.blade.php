@@ -6,18 +6,27 @@
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-8 align-self-end">
-                        <h1 class="text-white font-weight-bold">Welcome to Your Listing</h1>
+                        <h1 class="text-white font-weight-bold">Find Everything You Need.</h1>
                         <hr class="divider" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
-                        <p class="text-white-75 mb-5">Your One-Stop Destination for Local Businesses!</p>
+                        <p class="text-white-75 mb-5">Unlock the Power of Connection: Discover, Connect, and Grow with Our Business Listing Directory.</p>
                         <form class="form-inline" id="localsearchForm">
                        <div class="row d-flex justify-content-center align-items-center">
                       <div class="col-md-12">
                         <div class="search">
                           <i class="fa fa-search"></i>
-                          <input type="text" class="form-control" placeholder="Have a question? Ask Now">
-                          <button class="btn btn-primary">Search</button>
+                          <input type="text" class="form-control" style="width: 68%; " placeholder="Have a question? Ask Now">
+                          <select class="form-control" style="position: absolute;
+    top: 0px;
+    left: 470px;
+    width: 31%; height:60px;">
+                            <option>Select location..</option>
+                            @foreach($cities as $city)
+                            <option value="{{$city->city}}">{{$city->city}}</option>
+                            @endforeach
+                          </select>
+                          <button class="btn btn-primary" style="left:682px;">Search</button>
                         </div>
                       </div>
                       
@@ -29,58 +38,104 @@
         </header>
 
 
+        <!-- Services-->
+        <section class="page-section" id="services">
+            <div class="container px-4 px-lg-5">
+                <h2 class="text-center mt-0">Featured Listings</h2>
+                <hr class="divider" />
+                <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+        @if(count($flist)>0)
+      <div id="news-slider" class="owl-carousel">
+         @foreach($flist as $list)
+        <div class="post-slide">
+          <div class="post-img">
+            <img src="{{!empty($list->images[0]) ? url($list->images[0]->image):url('/ldp.jpeg') }}" alt="">
+            <a href="{{url('/list/'.$list->slug)}}" class="over-layer"><i class="fa fa-link"></i></a>
+          </div>
+          <div class="post-content">
+            <h3 class="post-title">
+              <a href="{{url('/list/'.$list->slug)}}">{{$list->title}}</a>
+            </h3>
+            <p class="post-description">{{$list->location}}</p>
+            <span class="post-date"><i class="fa fa-clock-o"></i>{{date("d-m-y",strtotime($list->created_at))}}</span>
+            <br/><span class="post-date"><i class="fa fa-phone"></i>{{$list->phone}}</span>
+            <p><a href="{{url('/list/'.$list->slug)}}" class="read-more">view</a></p>
+          </div>
+        </div>
+        @endforeach
+      </div>
+      @endif
+    </div>
+  </div>
+</div>
+
+                <!-- carousel -->
+
+            </div>
+        </section>
+
+        <!-- list new -->
+        <section class="page-section" id="services">
+            <div class="container px-4 px-lg-5">
+                <h2 class="text-center mt-0">Recent Listings</h2>
+                <hr class="divider" />
+                <div class="container mb-3 mt-3">
+  <button class="btn btn-primary btn-grid">Grid View</button>
+  <button class="btn btn-danger btn-list">List View</button>
+  
+</div>
+<div class="container grid-container">
+  <div class="row">
+    @if(count($tlist)>0)
+      @foreach($tlist as $li)
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card">
+        <img class="card-img-top" src="{{!empty($li->images[0]) ? url($li->images[0]->image):url('/ldp.jpeg') }}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><a href="{{url('/list/'.$list->slug)}}">{{$li->title}}</a></h5>
+          <p class="post-description">{{$list->location}}</p>
+          <p class="card-text">
+            <span class="post-date"><i class="fa fa-clock-o"></i>{{date("d-m-y",strtotime($list->created_at))}}</span>
+            <br/><span class="post-date"><i class="fa fa-phone"></i>{{$list->phone}}</span></p>
+           <p> <a href="{{url('/list/'.$list->slug)}}" class="read-more">view</a></p>
+        </div>
+      </div>
+    </div>
+     @endforeach
+    @endif
+  </div>
+  
+</div>
+            </div>
+        </section>
+
+        
         <!-- About-->
         <section class="page-section bg-primary" id="about">
             <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8 text-center">
-                        <h2 class="text-white mt-0"></h2>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="text-white mt-0 text-center">Business Categories</h2>
                         <hr class="divider divider-light" />
                         <!-- <p class="text-white-75 mb-4"></p> -->
+                        <div class="row">
+                            @foreach($cats as $cat)
+                         <div class="col-md-3">
+                            <div class="card bg-primary">
+                                <div class="card-body text-info">{{$cat->name}}</div>
+                            </div>
+                         </div>
+                            @endforeach
+                        </div>
                        
                     </div>
                 </div>
             </div>
         </section>
-        <!-- Services-->
-        <section class="page-section" id="services">
-            <div class="container px-4 px-lg-5">
-                <h2 class="text-center mt-0">At Your Service</h2>
-                <hr class="divider" />
-                <div class="row gx-4 gx-lg-5">
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="mt-5">
-                            <div class="mb-2"><i class="bi-gem fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">Sturdy Themes</h3>
-                            <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="mt-5">
-                            <div class="mb-2"><i class="bi-laptop fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">Up to Date</h3>
-                            <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="mt-5">
-                            <div class="mb-2"><i class="bi-globe fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">Ready to Publish</h3>
-                            <p class="text-muted mb-0">You can use this design as is, or you can make changes!</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="mt-5">
-                            <div class="mb-2"><i class="bi-heart fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">Made with Love</h3>
-                            <p class="text-muted mb-0">Is it really open source if it's not made with love?</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
         <!-- Portfolio-->
-        <div id="portfolio">
+        <div id="portfolio" class='d-none'>
             <div class="container-fluid p-0">
                 <div class="row g-0">
                     <div class="col-lg-4 col-sm-6">
@@ -143,8 +198,8 @@
         <!-- Call to action-->
         <section class="page-section bg-dark text-white">
             <div class="container px-4 px-lg-5 text-center">
-                <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
-                <a class="btn btn-light btn-xl" href="https://startbootstrap.com/theme/creative/">Download Now!</a>
+                <h2 class="mb-4">List your business now!</h2>
+                <a class="btn btn-light btn-xl" href="{{url("/login")}}">Get Started</a>
             </div>
         </section>
         <!-- Contact-->

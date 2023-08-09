@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
@@ -23,7 +23,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/list/{slug}', [App\Http\Controllers\HomeController::class, 'view']);
 Route::get('/getStarted', [App\Http\Controllers\HomeController::class, 'register'])->name('getstarted');
 Route::post('/register_step1', [App\Http\Controllers\HomeController::class, 'register_step1'])->name('register_step1');
 Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'userdashboard'])->name('dashboard');

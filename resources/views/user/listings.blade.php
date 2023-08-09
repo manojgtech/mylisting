@@ -4,23 +4,55 @@
  <div class="container">
    <div class="row">
    @if( Session::has( 'success' ))
-     {{ Session::get( 'success' ) }}
+     <div class="alert alert-sucess">{{ Session::get( 'success' ) }}</div>
 @elseif( Session::has( 'warning' ))
-     {{ Session::get( 'warning' ) }} 
+    <div class="alert alert-danger"> {{ Session::get( 'warning' ) }} </div>
 @endif
     @if(count($lists)>0)
-       @foreach($lists as $list)
-       <div class="col-md-4">
+       
      <div class="card">
-                <div class="card-header">{{$list->title}}</div>
+                <div class="card-header">Your Listings</div>
                 
                 <div class="card-body">
-      
+      <table class="table" id="tablelisting">
+        <thead>
+          <tr>
+          <th>SN</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Website</th>
+            <th>City</th>
+            <th>Date</th>
+            <th>Actions</th>
+
+          </tr>
+        </thead>
+        <tbody>
+        @foreach($lists as $list)
+         <tr>
+          <td>{{$loop->iteration}}</td>
+          <td>{{$list->title}}</td>
+          <td>{{$list->categoryname->name}}</td>
+          <td>{{$list->email}}</td>
+          <td>{{$list->phone}}</td>
+          <td>{{$list->website}}</td>
+          <td>{{$list->cityname->city}}</td>
+          <td>{{ date("Y-m-d",strtotime($list->created_at))}}</td>
+          <td><a href="{{url("user/viewlist/".$list->id)}}" ><i class="fa fa-eye"></i></a>&nbsp;<a href="{{url("user/editlist/".$list->id)}}" ><i class="fa fa-pencil"></i></a> &nbsp;<a data-id="{{$list->id}}" onclick="delList(this)"><i class="fa fa-trash"></i></a></td>
+          
+         </tr>
+        @endforeach
+        </tbody>
+        
+
+      </table>
                     
                 </div>
             </div>
-     </div>
-     @endforeach
+    
+     
      @else
      <p>No listing exists.</p>
 

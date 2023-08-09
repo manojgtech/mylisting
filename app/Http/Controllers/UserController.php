@@ -10,6 +10,7 @@ use App\Models\city;
 use App\Models\state;
 use App\Models\image;
 use App\Models\listing;
+use App\Models\plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
@@ -62,12 +63,19 @@ class UserController extends Controller
  public function saveListing(Request $request){
     $validatedData = $this->validate($request, [
         'category' => 'required',
-        'title' => 'required|min:5',
+        'title' => 'required|min:3',
         'city'=>'required',
         'state'=>'required',
         'email'=>'email',
+        'phone'=>'digits_between:10,13|numeric',
         'description'=>'required|min:50',
-        'images.*' => 'mimes:jpg,png,jpeg,gif,svg'
+        'images.*' => ['image','mimes:jpg,png,jpeg,gif,svg','max:2048'],
+        'website'=>'url',
+        'zip'=>'digits:6|numeric',
+        'facebook'=>'url',
+        'twitter'=>'url',
+        'instagram'=>'url',
+        'youtube'=>'url'
         ]);
         $list=new listing();
         $list->category=$validatedData['category'];
@@ -75,6 +83,13 @@ class UserController extends Controller
         $list->city=$validatedData['city'];
         $list->state=$validatedData['state'];
         $list->email=$validatedData['email'];
+        $list->phone=$validatedData['phone'];
+        $list->website=$validatedData['website'];
+        $list->zip=$validatedData['zip'];
+        $list->facebook=$validatedData['facebook'];
+        $list->twitter=$validatedData['twitter'];
+        $list->youtube=$validatedData['youtube'];
+        $list->instagram=$validatedData['instagram'];
         $list->description=htmlentities($validatedData['category']);
         $list->location=isset($request->location) ? $request->location:'';
         $list->user_id=Auth::id();
@@ -137,5 +152,13 @@ class UserController extends Controller
 
   return $text;
 }
+public function profile(Request $request){
+    $user_id=Auth::id();
+    $user=User::find($user_id);
+    $plans=plan::all();
+    return view('user.profile',['user'=>$user,'plans'=>$plans]);
+    
+
+} 
 
 }

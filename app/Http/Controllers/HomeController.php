@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Session;
+use App\Models\category;
+use App\Models\city;
+use App\Models\state;
+use App\Models\image;
+use App\Models\listing;
 
 class HomeController extends Controller
 {
@@ -31,7 +36,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data['cities']=city::all();
+        $data['cats']=category::all();
+        $data['flist']=listing::where('featured',1)->get();
+        $data['tlist']=listing::latest()->paginate(12);
+        return view('welcome',$data);
+    }
+    public function view(Request $request){
+        $slug=isset($request->slug) ? trim($request->slug):'';
+        if(!empty($slug)){
+           $data['list']=listing::where('slug',$slug)->first();
+           $data['user']=User::where('id',$data['list']->user_id)->first();
+           return view('listview',$data);
+        }else{
+            echo "no page";
+            die;
+        }
     }
     public function register(){
         return view("auth.getstarted");

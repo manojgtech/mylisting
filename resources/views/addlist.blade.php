@@ -17,7 +17,7 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="category" class="col-md-4 col-form-label text-md-end">{{ __('Business Categories') }}</label>
+                            <label for="category" class="col-md-4 col-form-label text-md-end">{{ __('Business Categories') }} <sup>*</sup></label>
 
                             <div class="col-md-6">
                                 <select id="category"  class="form-control @error('category') is-invalid @enderror" name="category"  required  autofocus>
@@ -36,10 +36,10 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="category" class="col-md-4 col-form-label text-md-end">{{ __('Business Title') }}</label>
+                            <label for="category" class="col-md-4 col-form-label text-md-end">{{ __('Business Title') }} <sup>*</sup></label>
 
                             <div class="col-md-6">
-                                <input type="text" id="title"  class="form-control @error('title') is-invalid @enderror" name="title"  required autocomplete="name" autofocus>
+                                <input type="text" id="title"  class="form-control @error('title') is-invalid @enderror" name="title" minlength="5"  required autocomplete="name" autofocus>
                                   
 
                                 @error('title')
@@ -66,11 +66,11 @@
                         </div>
                        
                         <div class="row mb-3">
-                            <label for="category" class="col-md-4 col-form-label text-md-end">{{ __('State') }}</label>
+                            <label for="category" class="col-md-4 col-form-label text-md-end">{{ __('State') }} <sup>*</sup></label>
 
                             <div class="col-md-6">
-                                <select id="state"  class="form-control @error('state') is-invalid @enderror" name="state"  required autofocus>
-                                    <option>Select Category</option>
+                                <select id="state" onchange="fetchcity(this);"  class="form-control @error('state') is-invalid @enderror" name="state"  required autofocus>
+                                    <option>Select State</option>
                                   @foreach($states as $key => $val)
                                     <option value={{$val}}>{{$key}}</option>
                                   @endforeach
@@ -84,11 +84,11 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="category" class="col-md-4 col-form-label text-md-end">{{ __('City') }}</label>
+                            <label for="category" class="col-md-4 col-form-label text-md-end">{{ __('City') }} <sup>*</sup></label>
 
                             <div class="col-md-6">
                             <select id="city"  class="form-control @error('city') is-invalid @enderror" name="city"  required autocomplete="name" autofocus>
-                                    <option>Select Category</option>
+                                    <option>Select City</option>
                                   @foreach($city as $key => $val)
                                     <option value={{$val}}>{{$key}}</option>
                                   @endforeach
@@ -104,7 +104,22 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="location" class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
+                            <label for="location" class="col-md-4 col-form-label text-md-end">{{ __('Zipcode') }} <sup>*</sup></label>
+
+                            <div class="col-md-6">
+                                <input type="text" minlength="6" maxlength="6" id="zip"  class="form-control @error('zip') is-invalid @enderror" name="zip"  required autofocus>
+                                  
+
+                                @error('zip')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="location" class="col-md-4 col-form-label text-md-end">{{ __('Email') }} <sup>*</sup></label>
 
                             <div class="col-md-6">
                                 <input type="email" id="email"  class="form-control @error('email') is-invalid @enderror" name="email"  required autocomplete="email" autofocus>
@@ -122,7 +137,7 @@
                             <label for="location" class="col-md-4 col-form-label text-md-end">{{ __('Phone') }}</label>
 
                             <div class="col-md-6">
-                                <input type="tel" id="phone"  class="form-control @error('phone') is-invalid @enderror" name="phone"  required autocomplete="phone" autofocus>
+                                <input type="tel" id="phone"  class="form-control @error('phone') is-invalid @enderror" name="phone"  autocomplete="phone" autofocus>
                                   
 
                                 @error('phone')
@@ -132,6 +147,9 @@
                                 @enderror
                             </div>
                         </div>
+
+                        
+
 
                         <div class="row mb-3">
                             <label for="location" class="col-md-4 col-form-label text-md-end">{{ __('Website') }}</label>
@@ -148,7 +166,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Description') }}</label>
+                            <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Description') }}<sup>*(min 50 chars)</sup></label>
 
                             <div class="col-md-6">
                                  <textarea type="description" id="descriptioneditor"  class="form-control @error('description') is-invalid @enderror" name="description"  required autocomplete="description" autofocus>
@@ -178,6 +196,68 @@
                         </div>
                             </div>
                         </div>
+
+                        <!-- cover -->
+
+<!-- social link -->
+<div class="row mb-3">
+                            <label for="location" class="col-md-4 col-form-label text-md-end">{{ __('Facebook') }}</label>
+
+                            <div class="col-md-6">
+                                <input type="url" id="facebook"  class="form-control @error('facebook') is-invalid @enderror" name="website"  autofocus>
+                                  
+
+                                @error('facebook')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="location" class="col-md-4 col-form-label text-md-end">{{ __('Twitter') }}</label>
+
+                            <div class="col-md-6">
+                                <input type="url" id="twitter"  class="form-control @error('twitter') is-invalid @enderror" name="twitter" autofocus>
+                                  
+
+                                @error('twitter')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="location" class="col-md-4 col-form-label text-md-end">{{ __('Instagram') }}</label>
+
+                            <div class="col-md-6">
+                                <input type="url" id="intagram"  class="form-control @error('intagram') is-invalid @enderror" name="intagram"  required autocomplete="intagram" autofocus>
+                                  
+
+                                @error('intagram')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="location" class="col-md-4 col-form-label text-md-end">{{ __('Youtube') }}</label>
+
+                            <div class="col-md-6">
+                                <input type="url" id="youtube"  class="form-control @error('youtube') is-invalid @enderror" name="youtube"   autofocus>
+                                  
+
+                                @error('youtube')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
                        
 
                        
