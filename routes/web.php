@@ -25,10 +25,13 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/list/{slug}', [App\Http\Controllers\HomeController::class, 'view']);
+Route::get('/category/{category}', [App\Http\Controllers\HomeController::class, 'viewcategory']);
+Route::get('/city/{city}', [App\Http\Controllers\HomeController::class, 'viewcity']);
 Route::get('/getStarted', [App\Http\Controllers\HomeController::class, 'register'])->name('getstarted');
 Route::post('/register_step1', [App\Http\Controllers\HomeController::class, 'register_step1'])->name('register_step1');
 Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'userdashboard'])->name('dashboard');
 Route::get('/profile', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');
+Route::post('/updateprofile', [App\Http\Controllers\UserController::class, 'updateprofile']);
 Route::get('/add-listing', [App\Http\Controllers\UserController::class, 'addListing']);
 Route::post('/add-listing', [App\Http\Controllers\UserController::class, 'saveListing']);
 Route::post('/uploadimg',  [App\Http\Controllers\UserController::class, 'uploadimg']);

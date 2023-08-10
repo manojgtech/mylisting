@@ -28,7 +28,9 @@ class UserController extends Controller
         $this->middleware('auth');
     }
     public function userdashboard(Request $request){
-        return view("auth.register_step2");
+        $uid=$userid=Auth::id();
+        $data['clist']=listing::where('user_id',$uid)->count();
+        return view("user.dashboard",$data);
     } 
     public function addListing(Request $request){
         $cats=category::all()->pluck("id",'name');
@@ -160,5 +162,29 @@ public function profile(Request $request){
     
 
 } 
-
+public function updateprofile(Request $request){
+    $validatedData = $this->validate($request, [
+        'name' => 'required|min:3|max:50',
+        'phone' => 'max:13|min:10',
+        //'password' => 'same:cpassword',
+        'pic' => ['image','mimes:jpg,png,jpeg,gif,svg','max:1048'],
+        'plan'=>'required',
+        'user_id'=>'required'
+        ]);
+        $user=user::find($validatedData['user_id']);
+        $user->name=$validatedData['name'];
+        $user->phone=$validatedData['phone'];
+        $user->plan=$validatedData['plan'];
+        if(isset($validatedData['password']) && !empty($validatedData['password'])){
+            $hashedPassword = Hash::make($validatedData['password']);
+            $user->password=$hashedPassword;
+        }
+        if($request->hasfile('pic')){
+            $path = $request->pic->store('/images', ['disk' =>   'my_files']);
+            $user->pic=$path;
+        }
+        $user->save();
+        return redirect()->back()->withSuccess("Profile updated successfully");
+        
+ }
 }

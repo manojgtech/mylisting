@@ -122,9 +122,12 @@
                         <!-- <p class="text-white-75 mb-4"></p> -->
                         <div class="row">
                             @foreach($cats as $cat)
+                            @php
+                              $cn=str_replace(" ","-",$cat->name);
+                            @endphp
                          <div class="col-md-3">
                             <div class="card bg-primary">
-                                <div class="card-body text-info">{{$cat->name}}</div>
+                                <div class="card-body text-info"><a class="text-info" href={{url('category/'.$cn)}}>{{$cat->name}}</a></div>
                             </div>
                          </div>
                             @endforeach

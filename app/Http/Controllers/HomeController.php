@@ -80,6 +80,57 @@ class HomeController extends Controller
 
         
     }
+    
+    public function viewcategory(Request $request){
+        $cat=isset($request->category) ? $request->category :'';
+       $data['keyword']=$cat;
+       $lists=[];
+       if(!empty($cat)){
+        $cat=str_replace("-"," ",$cat);
+        $lcat=category::where("name",$cat)->first();
+        if($lcat){
+          $lists=listing::where('category',$lcat->id)->get();
+        }else{
+            $lists=listing::latest()->get(); 
+        }
+       }else{
+        $lists=listing::latest()->get(); 
+       }
+       $data['catlist']=$lists;
+       $data['cities']=city::all();
+       $data['cats']=category::all();
+       $data['flist']=listing::where('featured',1)->get();
+       $data['tlist']=listing::latest()->paginate(12);
+       return view('categorylist',$data);
+       
+
+           
+    }
+    public function viewcity(Request $request){
+        $cat=isset($request->category) ? $request->category :'';
+       $data['keyword']=$cat;
+       $lists=[];
+       if(!empty($cat)){
+        $cat=str_replace("-"," ",$cat);
+        $lcat=city::where("city",$cat)->first();
+        if($lcat){
+          $lists=listing::where('city',$lcat->id)->get();
+        }else{
+            $lists=listing::latest()->get(); 
+        }
+       }else{
+        $lists=listing::latest()->get(); 
+       }
+       $data['catlist']=$lists;
+       $data['cities']=city::all();
+       $data['cats']=category::all();
+       $data['flist']=listing::where('featured',1)->get();
+       $data['tlist']=listing::latest()->paginate(12);
+       return view('categorylist',$data);
+       
+
+           
+    }
 
     
 }
