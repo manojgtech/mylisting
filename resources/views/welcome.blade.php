@@ -2,134 +2,491 @@
 
 @section('content')
 
-<header class="masthead">
-            <div class="container px-4 px-lg-5 h-100">
-                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
-                    <div class="col-lg-8 align-self-end">
-                        <h1 class="text-white font-weight-bold">Find Everything You Need.</h1>
-                        <hr class="divider" />
-                    </div>
-                    <div class="col-lg-8 align-self-baseline">
-                        <p class="text-white-75 mb-5">Unlock the Power of Connection: Discover, Connect, and Grow with Our Business Listing Directory.</p>
-                        <form class="form-inline" id="localsearchForm">
-                       <div class="row d-flex justify-content-center align-items-center">
-                      <div class="col-md-12">
-                        <div class="search">
-                          <i class="fa fa-search"></i>
-                          <input type="text" class="form-control" style="width: 68%; " placeholder="Have a question? Ask Now">
-                          <select class="form-control" style="position: absolute;
-    top: 0px;
-    left: 470px;
-    width: 31%; height:60px;">
-                            <option>Select location..</option>
-                            @foreach($cities as $city)
-                            <option value="{{$city->city}}">{{$city->city}}</option>
-                            @endforeach
-                          </select>
-                          <button class="btn btn-primary" style="left:682px;">Search</button>
-                        </div>
-                      </div>
-                      
-                    </div>      
-                       </form>
-                    </div>
-                </div>
-            </div>
-        </header>
+    
+    
+		<!--welcome-hero start -->
+		<section id="home" class="welcome-hero">
+			<div class="container">
+				<div class="welcome-hero-txt">
+					<h2>best place to find and explore <br> that all you need </h2>
+					<p>
+						Find Best Place, Restaurant, Hotel, Real State and many more think in just One click 
+					</p>
+				</div>
+				<div class="welcome-hero-serch-box">
+					<div class="welcome-hero-form">
+						<div class="single-welcome-hero-form">
+							<h3>what?</h3>
+							<form action="index.html">
+								<input type="text" placeholder="Ex: palce, resturent, food, automobile" />
+							</form>
+							<div class="welcome-hero-form-icon">
+								<i class="flaticon-list-with-dots"></i>
+							</div>
+						</div>
+						<div class="single-welcome-hero-form">
+							<h3>location</h3>
+							<form action="index.html">
+								<input type="text" placeholder="Ex: london, newyork, rome" />
+							</form>
+							<div class="welcome-hero-form-icon">
+								<i class="flaticon-gps-fixed-indicator"></i>
+							</div>
+						</div>
+					</div>
+					<div class="welcome-hero-serch">
+						<button class="welcome-hero-btn" onclick="window.location.href='#'">
+							 search  <i data-feather="search"></i> 
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</section><!--/.welcome-hero-->
+		<!--welcome-hero end -->
+
+		<!--list-topics start -->
+		<section id="list-topics" class="list-topics">
+			<div class="container">
+				<div class="list-topics-content" style="font-size: 9px;">
+					<ul>
+						<li>
+							<div class="single-list-topics-content">
+								<div class="single-list-topics-icon">
+									<i class="flaticon-restaurant"></i>
+								</div>
+								<h2><a href="{{url('category/resturent')}}">resturent</a></h2>
+								<p>150 listings</p>
+							</div>
+						</li>
+						<li>
+							<div class="single-list-topics-content">
+								<div class="single-list-topics-icon">
+									<i class="flaticon-travel"></i>
+								</div>
+								<h2><a href="{{url('category/tours')}}">destination</a></h2>
+								<p>214 listings</p>
+							</div>
+						</li>
+						<li>
+							<div class="single-list-topics-content">
+								<div class="single-list-topics-icon">
+									<i class="flaticon-building"></i>
+								</div>
+								<h2><a href="{{url('category/hotels')}}">hotels</a></h2>
+								<p>185 listings</p>
+							</div>
+						</li>
+						<li>
+							<div class="single-list-topics-content">
+								<div class="single-list-topics-icon">
+									<i class="flaticon-pills"></i>
+								</div>
+								<h2><a href="{{url('category/health-care')}}">healthcare</a></h2>
+								<p>200 listings</p>
+							</div>
+						</li>
+						<li>
+							<div class="single-list-topics-content">
+								<div class="single-list-topics-icon">
+									<i class="flaticon-transport"></i>
+								</div>
+								<h2><a href="{{url('category/automotion')}}">automotion</a></h2>
+								<p>120 listings</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div><!--/.container-->
+
+		</section><!--/.list-topics-->
+		<!--list-topics end-->
+<!--works start -->
+<section id="works" class="works">
+			<div class="container">
+				<div class="section-header">
+					<h2>how it works</h2>
+					<p>Creating an effective business listing is crucial for attracting potential customers and providing them with the information they need to understand how your business works. A well-written business listing should be informative, engaging, and clear.</p>
+				</div><!--/.section-header-->
+				<div class="works-content">
+					<div class="row">
+						<div class="col-md-4 col-sm-6">
+							<div class="single-how-works">
+								<div class="single-how-works-icon">
+									<i class="flaticon-lightbulb-idea"></i>
+								</div>
+								<h2><a href="#">choose <span> what to</span> do</a></h2>
+								<p>
+								Start with a catchy and relevant business name that reflects your brand identity. Follow it with a brief overview of your business that highlights what you do and what sets you apart from your competitors.
 
 
-        <!-- Services-->
-        <section class="page-section" id="services">
-            <div class="container px-4 px-lg-5">
-                <h2 class="text-center mt-0">Featured Listings</h2>
-                <hr class="divider" />
-                <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-        @if(count($flist)>0)
-      <div id="news-slider" class="owl-carousel">
-         @foreach($flist as $list)
-        <div class="post-slide">
-          <div class="post-img">
-            <img src="{{!empty($list->images[0]) ? url($list->images[0]->image):url('/ldp.jpeg') }}" alt="">
-            <a href="{{url('/list/'.$list->slug)}}" class="over-layer"><i class="fa fa-link"></i></a>
-          </div>
-          <div class="post-content">
-            <h3 class="post-title">
-              <a href="{{url('/list/'.$list->slug)}}">{{$list->title}}</a>
-            </h3>
-            <p class="post-description">{{$list->location}}</p>
-            <span class="post-date"><i class="fa fa-clock-o"></i>{{date("d-m-y",strtotime($list->created_at))}}</span>
-            <br/><span class="post-date"><i class="fa fa-phone"></i>{{$list->phone}}</span>
-            <p><a href="{{url('/list/'.$list->slug)}}" class="read-more">view</a></p>
-          </div>
-        </div>
-        @endforeach
-      </div>
-      @endif
-    </div>
-  </div>
-</div>
 
-                <!-- carousel -->
 
-            </div>
-        </section>
 
-        <!-- list new -->
-        <section class="page-section" id="services">
-            <div class="container px-4 px-lg-5">
-                <h2 class="text-center mt-0">Recent Listings</h2>
-                <hr class="divider" />
-                <div class="container mb-3 mt-3">
-  <button class="btn btn-primary btn-grid">Grid View</button>
-  <button class="btn btn-danger btn-list">List View</button>
-  
-</div>
-<div class="container grid-container">
-  <div class="row">
-    @if(count($tlist)>0)
-      @foreach($tlist as $li)
-    <div class="col-12 col-md-6 col-lg-4">
-      <div class="card">
-        <img class="card-img-top" src="{{!empty($li->images[0]) ? url($li->images[0]->image):url('/ldp.jpeg') }}" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title"><a href="{{url('/list/'.$list->slug)}}">{{$li->title}}</a></h5>
-          <p class="post-description">{{$list->location}}</p>
-          <p class="card-text">
-            <span class="post-date"><i class="fa fa-clock-o"></i>{{date("d-m-y",strtotime($list->created_at))}}</span>
-            <br/><span class="post-date"><i class="fa fa-phone"></i>{{$list->phone}}</span></p>
-           <p> <a href="{{url('/list/'.$list->slug)}}" class="read-more">view</a></p>
-        </div>
-      </div>
-    </div>
-     @endforeach
+
+ 
+								</p>
+								<button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
+									read more
+								</button>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6">
+							<div class="single-how-works">
+								<div class="single-how-works-icon">
+									<i class="flaticon-networking"></i>
+								</div>
+								<h2><a href="#">find <span> what you want</span></a></h2>
+								<p>
+								Specify who your target audience is. This helps potential customers quickly determine if your business caters to their needs.
+								</p>
+								<button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
+									read more
+								</button>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6">
+							<div class="single-how-works">
+								<div class="single-how-works-icon">
+									<i class="flaticon-location-on-road"></i>
+								</div>
+								<h2><a href="#">explore <span> amazing</span> place</a></h2>
+								<p>
+								Include your business's physical location, contact details (phone number, email), and website link. This information helps customers find and reach you easily.
+
+
+								</p>
+								<button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
+									read more
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!--/.container-->
+		
+		</section><!--/.works-->
+		<!--works end -->
+
+		<!--explore start -->
+		<section id="explore" class="explore">
+			<div class="container">
+				<div class="section-header">
+					<h2>Featured Listings</h2>
+					<p>Explore New place, food, culture around the world and many more</p>
+				</div><!--/.section-header-->
+				<div class="explore-content">
+					<div class="row">
+					@if(count($flist)>0)
+      @foreach($flist as $list)
+						<div class=" col-md-4 col-sm-6">
+							<div class="single-explore-item" style="max-height: 120px;">
+								<div class="single-explore-img" style="max-height: 167px;">
+									<img src="{{!empty($list->images[0]) ? url($list->images[0]->image):url('/ldp.jpeg') }}" alt="{{$list->title}}">
+									<div class="single-explore-img-info">
+										<button onclick="window.location.href='{{url('/list/'.$list->slug)}}'">best rated</button>
+										<div class="single-explore-image-icon-box">
+											<ul>
+												<li>
+													<div class="single-explore-image-icon">
+														<i class="fa fa-arrows-alt"></i>
+													</div>
+												</li>
+												<li>
+													<div class="single-explore-image-icon">
+														<i class="fa fa-bookmark-o"></i>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="single-explore-txt bg-theme-1">
+									<h2><a href="{{url('/list/'.$list->slug)}}">{{$list->title}}</a></h2>
+									<p class="explore-rating-price">
+										<span class="explore-rating">5.0</span>
+										<a href="{{url('/list/'.$list->slug)}}"> 10 ratings</a> 
+										<span class="explore-price-box">
+											form
+											<span class="explore-price">5$-300$</span>
+										</span>
+										 <a href="{{url('/category/'.str_replace(" ","-",isset($list->category->slug) ? $list->category->slug :''))}}">{{isset($list->category->name) ? $list->category->name : ''}}</a>
+									</p>
+									<div class="explore-person">
+										<div class="row">
+											<div class="col-sm-2">
+												<div class="explore-person-img">
+													<a href="{{url('/')}}">
+														<img src="{{url($list->user->pic)}}" alt="explore person">
+													</a>
+												</div>
+											</div>
+											<div class="col-sm-10">
+												<p>
+													{{$list->getShortDesc()}}
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="explore-open-close-part">
+										<div class="row">
+											<div class="col-sm-5">
+												<button class="close-btn" onclick="window.location.href='{{url('/list/'.$list->slug)}}'">close now</button>
+											</div>
+											<div class="col-sm-7">
+												<div class="explore-map-icon">
+													<a href="#"><i data-feather="map-pin"></i></a>
+													<a href="#"><i data-feather="upload"></i></a>
+													<a href="#"><i data-feather="heart"></i></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+                        @endforeach
+    @else
+ <div class="col-md-8 text-center text-danger">No Listing for category </div>
     @endif
-  </div>
-  
-</div>
-            </div>
-        </section>
+						
+					</div>
+				</div>
+			</div><!--/.container-->
 
+		</section><!--/.explore-->
+		<!--explore end -->
+
+		<!--reviews start -->
+		<section id="reviews" class="reviews">
+			<div class="section-header">
+				<h2>clients reviews</h2>
+				<p>What our client say about us</p>
+			</div><!--/.section-header-->
+			<div class="reviews-content">
+				<div class="testimonial-carousel">
+				    <div class="single-testimonial-box">
+						<div class="testimonial-description">
+							<div class="testimonial-info">
+								<div class="testimonial-img">
+									<img src="assets/images/clients/c1.png" alt="clients">
+								</div><!--/.testimonial-img-->
+								<div class="testimonial-person">
+									<h2>Tom Leakar</h2>
+									<h4>london, UK</h4>
+									<div class="testimonial-person-star">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									</div>
+								</div><!--/.testimonial-person-->
+							</div><!--/.testimonial-info-->
+							<div class="testimonial-comment">
+								<p>
+									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
+								</p>
+							</div><!--/.testimonial-comment-->
+						</div><!--/.testimonial-description-->
+					</div><!--/.single-testimonial-box-->
+				    <div class="single-testimonial-box">
+						<div class="testimonial-description">
+							<div class="testimonial-info">
+								<div class="testimonial-img">
+									<img src="assets/images/clients/c2.png" alt="clients">
+								</div><!--/.testimonial-img-->
+								<div class="testimonial-person">
+									<h2>monirul islam</h2>
+									<h4>london, UK</h4>
+									<div class="testimonial-person-star">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									</div>
+								</div><!--/.testimonial-person-->
+							</div><!--/.testimonial-info-->
+							<div class="testimonial-comment">
+								<p>
+									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
+								</p>
+							</div><!--/.testimonial-comment-->
+						</div><!--/.testimonial-description-->
+					</div><!--/.single-testimonial-box-->
+				    <div class="single-testimonial-box">
+						<div class="testimonial-description">
+							<div class="testimonial-info">
+								<div class="testimonial-img">
+									<img src="assets/images/clients/c3.png" alt="clients">
+								</div><!--/.testimonial-img-->
+								<div class="testimonial-person">
+									<h2>Shohrab Hossain</h2>
+									<h4>london, UK</h4>
+									<div class="testimonial-person-star">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									</div>
+								</div><!--/.testimonial-person-->
+							</div><!--/.testimonial-info-->
+							<div class="testimonial-comment">
+								<p>
+									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
+								</p>
+							</div><!--/.testimonial-comment-->
+						</div><!--/.testimonial-description-->
+					</div><!--/.single-testimonial-box-->
+				    <div class="single-testimonial-box">
+						<div class="testimonial-description">
+							<div class="testimonial-info">
+								<div class="testimonial-img">
+									<img src="assets/images/clients/c4.png" alt="clients">
+								</div><!--/.testimonial-img-->
+								<div class="testimonial-person">
+									<h2>Tom Leakar</h2>
+									<h4>london, UK</h4>
+									<div class="testimonial-person-star">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									</div>
+								</div><!--/.testimonial-person-->
+							</div><!--/.testimonial-info-->
+							<div class="testimonial-comment">
+								<p>
+									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
+								</p>
+							</div><!--/.testimonial-comment-->
+						</div><!--/.testimonial-description-->
+					</div><!--/.single-testimonial-box-->
+				    <div class="single-testimonial-box">
+						<div class="testimonial-description">
+							<div class="testimonial-info">
+								<div class="testimonial-img">
+									<img src="assets/images/clients/c1.png" alt="clients">
+								</div><!--/.testimonial-img-->
+								<div class="testimonial-person">
+									<h2>Tom Leakar</h2>
+									<h4>london, UK</h4>
+									<div class="testimonial-person-star">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									</div>
+								</div><!--/.testimonial-person-->
+							</div><!--/.testimonial-info-->
+							<div class="testimonial-comment">
+								<p>
+									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
+								</p>
+							</div><!--/.testimonial-comment-->
+						</div><!--/.testimonial-description-->
+					</div><!--/.single-testimonial-box-->
+				    <div class="single-testimonial-box">
+						<div class="testimonial-description">
+							<div class="testimonial-info">
+								<div class="testimonial-img">
+									<img src="assets/images/clients/c2.png" alt="clients">
+								</div><!--/.testimonial-img-->
+								<div class="testimonial-person">
+									<h2>monirul islam</h2>
+									<h4>london, UK</h4>
+									<div class="testimonial-person-star">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									</div>
+								</div><!--/.testimonial-person-->
+							</div><!--/.testimonial-info-->
+							<div class="testimonial-comment">
+								<p>
+									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
+								</p>
+							</div><!--/.testimonial-comment-->
+						</div><!--/.testimonial-description-->
+					</div><!--/.single-testimonial-box-->
+				    <div class="single-testimonial-box">
+						<div class="testimonial-description">
+							<div class="testimonial-info">
+								<div class="testimonial-img">
+									<img src="assets/images/clients/c3.png" alt="clients">
+								</div><!--/.testimonial-img-->
+								<div class="testimonial-person">
+									<h2>Shohrab Hossain</h2>
+									<h4>london, UK</h4>
+									<div class="testimonial-person-star">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									</div>
+								</div><!--/.testimonial-person-->
+							</div><!--/.testimonial-info-->
+							<div class="testimonial-comment">
+								<p>
+									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
+								</p>
+							</div><!--/.testimonial-comment-->
+						</div><!--/.testimonial-description-->
+					</div><!--/.single-testimonial-box-->
+				    <div class="single-testimonial-box">
+						<div class="testimonial-description">
+							<div class="testimonial-info">
+								<div class="testimonial-img">
+									<img src="assets/images/clients/c4.png" alt="clients">
+								</div><!--/.testimonial-img-->
+								<div class="testimonial-person">
+									<h2>Tom Leakar</h2>
+									<h4>london, UK</h4>
+									<div class="testimonial-person-star">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									</div>
+								</div><!--/.testimonial-person-->
+							</div><!--/.testimonial-info-->
+							<div class="testimonial-comment">
+								<p>
+									Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis eaque.
+								</p>
+							</div><!--/.testimonial-comment-->
+						</div><!--/.testimonial-description-->
+					</div><!--/.single-testimonial-box-->
+				</div>
+			</div>
+
+		</section><!--/.reviews-->
+		<!--reviews end -->
         
-        <!-- About-->
-        <section class="page-section bg-primary" id="about">
-            <div class="container px-4 px-lg-5">
-                <div class="row">
+		<section id="explore" class="explore">
+			<div class="container">
+				<div class="section-header">
+					<h2>Explore Cities</h2>
+					<p>Explore New place, food, culture around the world and many more</p>
+				</div><!--/.section-header-->
+				<div class="explore-content">
+					<div class="row">
                     <div class="col-lg-12">
-                        <h2 class="text-white mt-0 text-center">Business Categories</h2>
-                        <hr class="divider divider-light" />
                         <!-- <p class="text-white-75 mb-4"></p> -->
-                        <div class="row">
-                            @foreach($cats as $cat)
+                        <div class="citiylist">
+                          @foreach($cities as $cat)
                             @php
-                              $cn=str_replace(" ","-",$cat->name);
+                              $cn=str_replace(" ","-",$cat->city)
                             @endphp
-                         <div class="col-md-3">
-                            <div class="card bg-primary">
-                                <div class="card-body text-info"><a class="text-info" href={{url('category/'.$cn)}}>{{$cat->name}}</a></div>
-                            </div>
-                         </div>
+                            <span class="badge rounded-pill"><a href="{{url('city/'.$cn)}}" class="text-danger">{{$cat->city}}</a></span>&nbsp;&nbsp;
                             @endforeach
                         </div>
                        
@@ -137,147 +494,9 @@
                 </div>
             </div>
         </section>
-        <!-- Portfolio-->
-        <div id="portfolio" class='d-none'>
-            <div class="container-fluid p-0">
-                <div class="row g-0">
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/1.jpg" title="Project Name">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/1.jpg" alt="..." />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/2.jpg" title="Project Name">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/2.jpg" alt="..." />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/3.jpg" title="Project Name">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/3.jpg" alt="..." />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/4.jpg" title="Project Name">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/4.jpg" alt="..." />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/5.jpg" title="Project Name">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/5.jpg" alt="..." />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/6.jpg" title="Project Name">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/6.jpg" alt="..." />
-                            <div class="portfolio-box-caption p-3">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Call to action-->
-        <section class="page-section bg-dark text-white">
-            <div class="container px-4 px-lg-5 text-center">
-                <h2 class="mb-4">List your business now!</h2>
-                <a class="btn btn-light btn-xl" href="{{url("/login")}}">Get Started</a>
-            </div>
-        </section>
-        <!-- Contact-->
-        <section class="page-section" id="contact">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8 col-xl-6 text-center">
-                        <h2 class="mt-0">Let's Get In Touch!</h2>
-                        <hr class="divider" />
-                        <p class="text-muted mb-5">Ready to start your next project with us? Send us a messages and we will get back to you as soon as possible!</p>
-                    </div>
-                </div>
-                <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
-                    <div class="col-lg-6">
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- * * SB Forms Contact Form * *-->
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- This form is pre-integrated with SB Forms.-->
-                        <!-- To make this form functional, sign up at-->
-                        <!-- https://startbootstrap.com/solution/contact-forms-->
-                        <!-- to get an API token!-->
-                        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                            <!-- Name input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                <label for="name">Full name</label>
-                                <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                            </div>
-                            <!-- Email address input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
-                                <label for="email">Email address</label>
-                                <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                                <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-                            </div>
-                            <!-- Phone number input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
-                                <label for="phone">Phone number</label>
-                                <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
-                            </div>
-                            <!-- Message input-->
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
-                                <label for="message">Message</label>
-                                <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
-                            </div>
-                            <!-- Submit success message-->
-                            <!---->
-                            <!-- This is what your users will see when the form-->
-                            <!-- has successfully submitted-->
-                            <div class="d-none" id="submitSuccessMessage">
-                                <div class="text-center mb-3">
-                                    <div class="fw-bolder">Form submission successful!</div>
-                                    To activate this form, sign up at
-                                    <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                </div>
-                            </div>
-                            <!-- Submit error message-->
-                            <!---->
-                            <!-- This is what your users will see when there is-->
-                            <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                            <!-- Submit Button-->
-                            <div class="d-grid"><button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Submit</button></div>
-                        </form>
-                    </div>
-                </div>
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-4 text-center mb-5 mb-lg-0">
-                        <i class="bi-phone fs-2 mb-3 text-muted"></i>
-                        <div>+1 (555) 123-4567</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- cities -->
+         <!-- About-->
+        
+       
+       
         @endsection

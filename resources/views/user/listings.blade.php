@@ -13,7 +13,7 @@
      <div class="card">
                 <div class="card-header">Your Listings</div>
                 
-                <div class="card-body">
+                <div class="card-body" style="overflow-x: scroll;">
       <table class="table" id="tablelisting">
         <thead>
           <tr>
@@ -40,7 +40,7 @@
           <td>{{$list->website}}</td>
           <td>{{$list->cityname->city}}</td>
           <td>{{ date("Y-m-d",strtotime($list->created_at))}}</td>
-          <td><a href="{{url("user/viewlist/".$list->id)}}" ><i class="fa fa-eye"></i></a>&nbsp;<a href="{{url("user/editlist/".$list->id)}}" ><i class="fa fa-pencil"></i></a> &nbsp;<a data-id="{{$list->id}}" onclick="delList(this)"><i class="fa fa-trash"></i></a></td>
+          <td>&nbsp;<a href="{{url("user/editlist/".Crypt::encrypt($list->id))}}" ><i class="fa fa-pencil"></i></a> &nbsp;<a data-id="{{Crypt::encrypt($list->id)}}" onclick="delList(this)"><i class="fa fa-trash"></i></a></td>
           
          </tr>
         @endforeach

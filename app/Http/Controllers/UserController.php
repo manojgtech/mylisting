@@ -19,6 +19,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use Storage;
+use App\Http\Traits\common;
 
 
 class UserController extends Controller
@@ -74,10 +75,10 @@ class UserController extends Controller
         'images.*' => ['image','mimes:jpg,png,jpeg,gif,svg','max:2048'],
         'website'=>'url',
         'zip'=>'digits:6|numeric',
-        'facebook'=>'url',
-        'twitter'=>'url',
-        'instagram'=>'url',
-        'youtube'=>'url'
+        //'facebook'=>'url',
+        //'twitter'=>'url',
+        //'instagram'=>'url',
+        //'youtube'=>'url'
         ]);
         $list=new listing();
         $list->category=$validatedData['category'];
@@ -88,11 +89,11 @@ class UserController extends Controller
         $list->phone=$validatedData['phone'];
         $list->website=$validatedData['website'];
         $list->zip=$validatedData['zip'];
-        $list->facebook=$validatedData['facebook'];
-        $list->twitter=$validatedData['twitter'];
-        $list->youtube=$validatedData['youtube'];
-        $list->instagram=$validatedData['instagram'];
-        $list->description=htmlentities($validatedData['category']);
+        $list->facebook=isset($validatedData['facebook']) ? $validatedData['facebook']:'' ;
+        $list->twitter=isset($validatedData['twitter']) ? $validatedData['twitter']:'' ;
+        $list->youtube=isset($validatedData['youtube']) ? $validatedData['youtube']:'';
+        $list->instagram=isset($validatedData['instagram']) ? $validatedData['instagram']:'';
+        $list->description=htmlentities($validatedData['description']);
         $list->location=isset($request->location) ? $request->location:'';
         $list->user_id=Auth::id();
         $list->slug=$this->slugify($validatedData['title']);
@@ -186,5 +187,86 @@ public function updateprofile(Request $request){
         $user->save();
         return redirect()->back()->withSuccess("Profile updated successfully");
         
+ }
+
+ public function editlist(Request $request){
+    $id=isset($request->id) ? Crypt::decrypt($request->id):'';
+    $cats=category::all()->pluck("id",'name');
+    $data['cats']=$cats;
+    $states=state::all()->pluck("id",'name');
+    $data['states']=$states;
+    $city=city::all()->pluck("id",'city');
+    $data['city']=$city;
+    $data['list']=listing::find($id);
+    $data['id']=$id;
+    return view('user.editlist',$data);
+ }
+ public function updateListing(Request $request){
+    $validatedData = $this->validate($request, [
+        'category' => 'required',
+        'title' => 'required|min:3',
+        'city'=>'required',
+        'state'=>'required',
+        'email'=>'email',
+        'phone'=>'digits_between:10,13|numeric',
+        'description'=>'required|min:50',
+        'images.*' => ['image','mimes:jpg,png,jpeg,gif,svg','max:2048'],
+        'website'=>'url',
+        'zip'=>'digits:6|numeric',
+        'facebook'=>'url',
+        'twitter'=>'url',
+        'instagram'=>'url',
+        'youtube'=>'url'
+        ]);
+        $id=base64_decode($request->id);
+        $list=listing::find($id);
+        $list->category=$validatedData['category'];
+        $list->title=$validatedData['title'];
+        $list->city=$validatedData['city'];
+        $list->state=$validatedData['state'];
+        $list->email=$validatedData['email'];
+        $list->phone=$validatedData['phone'];
+        $list->website=$validatedData['website'];
+        $list->zip=$validatedData['zip'];
+        $list->facebook=$validatedData['facebook'];
+        $list->twitter=$validatedData['twitter'];
+        $list->youtube=$validatedData['youtube'];
+        $list->instagram=$validatedData['instagram'];
+        $list->description=htmlentities($validatedData['description']);
+        $list->location=isset($request->location) ? $request->location:'';
+        $list->slug=$this->slugify($validatedData['title']);
+        if($list->save()){
+            if($request->hasfile('images'))
+            {
+               foreach($request->file('images') as $key => $file)
+               {
+                   
+                   $path = $file->store('/images', ['disk' =>   'my_files']);
+                   $image=new image();
+                   $image->list_id=$id;
+                   $image->image=$path;
+                   $image->save();
+               }
+              
+        }
+        
+         return Redirect("/user/listings")->withSuccess("Listing has been updated successfully.");
+            
+         }else{
+            return Redirect("/add-listing")->withWarning("There is an error."); 
+         }
+       
+ }
+ public function viewlist(Request $request){
+    $id=isset($request->id) ? Crypt::decrypt($request->id):'';
+    
+ }
+ public function deletelist(Request $request){
+    $id=isset($request->id) ? Crypt::decrypt($request->id):'';
+    if(!empty($id)){
+        $list=listing::find($id);
+        $list->delete();
+        return Redirect("/user/listings")->withSuccess("Listing has been deleted successfully.");
+    }
  }
 }

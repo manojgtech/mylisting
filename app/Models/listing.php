@@ -6,6 +6,7 @@ use App\Models\image;
 use App\Models\category;
 use App\Models\city;
 use App\Models\state;
+use App\Models\User;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -28,6 +29,16 @@ class listing extends Model
     public function statename(){
         return $this->hasOne(state::class,'id','state');
     }
+
+    public function user(){
+        return $this->hasOne(User::class,'id','user_id');
+    }
+    public  function getShortDesc(){
+         $dec=strip_tags(htmlspecialchars_decode($this->description));
+         return substr($dec,0,59).'...';
+    }
+    
+
 
 
 

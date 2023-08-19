@@ -36,3 +36,8 @@ Route::get('/add-listing', [App\Http\Controllers\UserController::class, 'addList
 Route::post('/add-listing', [App\Http\Controllers\UserController::class, 'saveListing']);
 Route::post('/uploadimg',  [App\Http\Controllers\UserController::class, 'uploadimg']);
 Route::get('/user/listings',  [App\Http\Controllers\UserController::class, 'listings']);
+Route::get('/user/editlist/{id}',  [App\Http\Controllers\UserController::class, 'editlist']);
+Route::post('/edit-listing', [App\Http\Controllers\UserController::class, 'updateListing']);
+Route::get('/deletelist/{id}', [App\Http\Controllers\UserController::class, 'deletelist']);
+Route::get('/search', [App\Http\Controllers\HomeController::class, 'search']);
+

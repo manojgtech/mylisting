@@ -11,14 +11,16 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Session;
+use DB;
 use App\Models\category;
 use App\Models\city;
 use App\Models\state;
 use App\Models\image;
 use App\Models\listing;
-
+use App\Http\Traits\common;
 class HomeController extends Controller
 {
+    use Common;
     /**
      * Create a new controller instance.
      *
@@ -34,12 +36,19 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        //echo $ip='45.115.105.84';
+        //$details = json_decode(file_get_contents("http://ipinfo.io/".$ip));
+
+        //dd($details);
         $data['cities']=city::all();
-        $data['cats']=category::all();
+        $data['cats']=category::leftJoin('listings',function($query){
+            $query->on("categories.id",'=',"listings.category");
+        })->select("category","name",'categories.id',DB::raw('count(listings.category) as c'))->groupBy("categories.id")->orderBy("c","desc")->limit(8)->get();
         $data['flist']=listing::where('featured',1)->get();
         $data['tlist']=listing::latest()->paginate(12);
+        $data['theme']='theme2';
         return view('welcome',$data);
     }
     public function view(Request $request){
@@ -47,6 +56,7 @@ class HomeController extends Controller
         if(!empty($slug)){
            $data['list']=listing::where('slug',$slug)->first();
            $data['user']=User::where('id',$data['list']->user_id)->first();
+           $data['theme']='theme2';
            return view('listview',$data);
         }else{
             echo "no page";
@@ -54,7 +64,8 @@ class HomeController extends Controller
         }
     }
     public function register(){
-        return view("auth.getstarted");
+        $data['theme']='theme2';
+        return view("auth.getstarted",$data);
     }
     public function register_step1(Request $request){
         $validatedData = $this->validate($request, [
@@ -101,13 +112,12 @@ class HomeController extends Controller
        $data['cats']=category::all();
        $data['flist']=listing::where('featured',1)->get();
        $data['tlist']=listing::latest()->paginate(12);
+       $data['theme']='theme2';
        return view('categorylist',$data);
-       
-
            
     }
     public function viewcity(Request $request){
-        $cat=isset($request->category) ? $request->category :'';
+       $cat=isset($request->city) ? $request->city:'';
        $data['keyword']=$cat;
        $lists=[];
        if(!empty($cat)){
@@ -121,15 +131,28 @@ class HomeController extends Controller
        }else{
         $lists=listing::latest()->get(); 
        }
+       
        $data['catlist']=$lists;
        $data['cities']=city::all();
        $data['cats']=category::all();
        $data['flist']=listing::where('featured',1)->get();
        $data['tlist']=listing::latest()->paginate(12);
+       $data['theme']='theme2';
        return view('categorylist',$data);
-       
+    }
 
-           
+    public function search(Request $request){
+        $key=$request->query("q");
+        $lists=listing::where("title","like","%".strtolower($key)."%")->orWhere("description","like",$key)->orderBy('created_at','DESC')->get();
+        $data['catlist']=$lists;
+        $data['keyword']=$key;
+        $data['theme']='theme2';
+       $data['cities']=city::all();
+       $data['cats']=category::all();
+       $data['flist']=listing::where('featured',1)->get();
+       $data['tlist']=listing::latest()->paginate(12);
+       return view('search',$data);
+
     }
 
     

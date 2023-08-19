@@ -204,7 +204,7 @@
                             <label for="location" class="col-md-4 col-form-label text-md-end">{{ __('Facebook') }}</label>
 
                             <div class="col-md-6">
-                                <input type="url" id="facebook"  class="form-control @error('facebook') is-invalid @enderror" name="website"  autofocus>
+                                <input type="url" id="facebook"  class="form-control @error('facebook') is-invalid @enderror" name="facebook"  autofocus>
                                   
 
                                 @error('facebook')
@@ -229,13 +229,13 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="location" class="col-md-4 col-form-label text-md-end">{{ __('Instagram') }}</label>
+                            <label for="instagram" class="col-md-4 col-form-label text-md-end">{{ __('Instagram') }}</label>
 
                             <div class="col-md-6">
-                                <input type="url" id="intagram"  class="form-control @error('intagram') is-invalid @enderror" name="intagram"  required autocomplete="intagram" autofocus>
+                                <input type="url" id="instagram"  class="form-control @error('instagram') is-invalid @enderror" name="intagram"  required autocomplete="intagram" autofocus>
                                   
 
-                                @error('intagram')
+                                @error('instagram')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
