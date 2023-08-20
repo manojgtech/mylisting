@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\newsletter;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use App\Models\User;
@@ -152,6 +153,31 @@ class HomeController extends Controller
        $data['flist']=listing::where('featured',1)->get();
        $data['tlist']=listing::latest()->paginate(12);
        return view('search',$data);
+
+    }
+    public function registernow(Request $request){
+        $valid=$this->validate($request,['email'=>'email|required']);
+        $news=new newsletter();
+        $news->email=$valid['email'];
+        $news->save();
+        return Redirect("getStarted")->withSuccess("You have signed up for newsletter successfully.");
+          
+    }
+    public function categories(Request $request){
+        $data['cities']=city::all();
+        $data['cats']=category::leftJoin('listings',function($query){
+            $query->on("categories.id",'=',"listings.category");
+        })->select("category","name",'categories.id',DB::raw('count(listings.category) as c'))->groupBy("categories.id")->orderBy("c","desc")->get();
+        $data['tlist']=listing::latest()->paginate(12);
+        $data['theme']='theme2';
+        return view("categories",$data);
+    }
+    public function categoriesdata(Request $request){
+        $cats=isset($request->cats) ? $request->cats:[];
+        $catd=listing::whereIn('category',$cats)->get();
+        $data['flist']=$catd;
+         $html = view('catlistdata', $data)->render();
+         echo json_encode(["status"=>true,'html'=>$html]);
 
     }
 

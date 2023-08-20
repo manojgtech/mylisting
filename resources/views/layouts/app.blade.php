@@ -71,13 +71,13 @@
         <![endif]-->
        @endif
     </head>
-    <body id="page-top">
+    <body id="page-top" data-baseurl="{{env('APP_URL','https://finded.in')}}">
 
     <header id="header-top" class="header-top" style="display:none;">
 			<ul class="d-none">
 				<li>
 					<div class="header-top-left">
-						<ul>
+						<ul style="display: none;">
 							<li class="select-opt">
 								<select name="language" id="language">
 									<option value="default">EN</option>
@@ -164,11 +164,11 @@
 			            <!-- Collect the nav links, forms, and other content for toggling -->
 			            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
 			                <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-			                    <li class=" scroll active"><a href="#home">home</a></li>
-			                    <li class="scroll"><a href="#works">how it works</a></li>
-			                    <li class="scroll"><a href="#explore">explore</a></li>
+			                    <li class="nav-item active"><a href="{{url('/')}}">Home</a></li>
+			                    <li class="nav-item"><a href="{{url('/categories')}}">Categories</a></li>
+			                    <!-- <li class="nav-item"><a href="{{url('explore')}}">Listings</a></li> -->
 			                    <!-- <li class="scroll"><a href="#reviews">review</a></li> -->
-			                    <li class="scroll"><a href="#blog">blog</a></li>
+			                    <li class="nav-item"><a href="{{url('blog')}}">Blogs</a></li>
                                 @guest
                             @if (Route::has('login'))
                         <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
@@ -233,9 +233,10 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="subscription-input-group">
-							<form action="#">
-								<input type="email" class="subscription-input-form" placeholder="Enter your email here">
-								<button class="appsLand-btn subscribe-btn" onclick="window.location.href='#'">
+							<form action="{{url('registernow')}}" method="post">
+                                @csrf
+								<input type="email" name="email" required class="subscription-input-form" placeholder="Enter your email here">
+								<button class="appsLand-btn subscribe-btn" type="submit">
 									creat account
 								</button>
 							</form>
@@ -267,11 +268,11 @@
 				</div>
 				<div class="hm-footer-copyright">
 					<div class="row">
-						<!-- <div class="col-sm-5">
+						<div class="col-sm-5">
 							<p>
-								&copy;copyright. designed and developed by <a href="https://www.themesine.com/">themesine</a>
+								&copy;copyright. designed and developed by <a href="https://www.finded,in.com/">Finded.in</a>
 							</p>
-						</div> -->
+						</div>
 						<div class="col-sm-7">
 							<div class="footer-social">
 								<span><i class="fa fa-phone"> +1  (222) 777 8888</i></span>
@@ -340,7 +341,7 @@
     //     pagination:true,
     //     autoPlay:true
     // });
-    $("select").select2();
+    
     });
         function getLocation() {
   if (navigator.geolocation) {
@@ -357,42 +358,6 @@ function showPosition(position) {
 }
 
 
-function showList(e) {
-  var $gridCont = $('.grid-container');
-  e.preventDefault();
-  $gridCont.hasClass('list-view') ? $gridCont.removeClass('list-view') : $gridCont.addClass('list-view');
-}
-function gridList(e) {
-  var $gridCont = $('.grid-container')
-  e.preventDefault();
-  $gridCont.removeClass('list-view');
-}
-
-$(document).on('click', '.btn-grid', gridList);
-$(document).on('click', '.btn-list', showList);
-
-
-//share
-
-
-// share
-$('.owl-carousel').owlCarousel({
-    loop:true,
-    margin:10,
-    nav:true,
-    startPosition: 2,
-    responsive:{
-        0:{
-            items:1
-        },
-        600:{
-            items:1
-        },
-        1000:{
-            items:1
-        }
-    }
-})
 
 
     </script>
@@ -421,7 +386,29 @@ $('.owl-carousel').owlCarousel({
       // while using file:// protocol
       // pls don't forget to change to your domain :)
       injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg'); 
-      
+      function filtercat(e){
+        e.preventDefault();
+        var form=$("#catfilter");
+        const formData = new FormData();
+        var burl=$("body").data('baseurl');
+        $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+     });
+        var saveData = $.ajax({
+      type: 'POST',
+      url: burl+"/categoriesdata",
+      data: form.serialize(),
+      dataType: "text",
+      success: function(resultData) { 
+        var res=JSON.parse(resultData);
+        $("#catlistview1").html(res.html);
+        return false; }
+});
+return false;
+
+      }
     </script>
     <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
