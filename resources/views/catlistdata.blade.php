@@ -1,7 +1,7 @@
             <!-- Listing sorting-->
             <div class="row mb-4 align-items-center">
               <div class="col-md-7">
-                <ul class="list-inline mb-0">
+                <ul class="list-inline mb-0 " style="display: none;">
                   <li class="list-inline-item my-1 my-lg-0">
                     <select class="choices" data-customclass="btn btn-light bg-white shadow-xs border text-start d-flex align-items-center">
                       <option value>Sort By </option>
@@ -21,7 +21,7 @@
                 </ul>
               </div>
               <div class="col-md-5 text-md-end">
-                <p class="h6 mb-0 p-3 p-md-0">Show 8 results</p>
+                <p class="h6 mb-0 p-3 p-md-0">Showing <strong>{{$limit}}</strong> of <strong>{{$count}}</strong>  results</p>
               </div>
             </div>
             <!-- Listing items-->
@@ -77,7 +77,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="explore-open-close-part">
+									<div class="explore-open-close-part" style="display: none;">
 										<div class="row">
 											<div class="col-sm-5">
 												<button class="close-btn" onclick="window.location.href='{{url('/list/'.$list->slug)}}'">close now</button>
@@ -101,12 +101,13 @@
 						
 					</div>
             <!-- Pagination-->
-            <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-end mb-0">
+            <nav aria-label="Page navigation example" id="catlinkid" style="display: none;">
+              <!-- <ul class="pagination justify-content-end mb-0">
                 <li class="page-item mx-1"><a class="page-link rounded shadow-sm px-3" href="#!" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
                 <li class="page-item mx-1 active"><a class="page-link rounded shadow-sm px-3" href="#!">1</a></li>
                 <li class="page-item mx-1"><a class="page-link rounded shadow-sm px-3" href="#!">2</a></li>
                 <li class="page-item mx-1"><a class="page-link rounded shadow-sm px-3" href="#!">3</a></li>
                 <li class="page-item mx-1"><a class="page-link rounded shadow-sm px-3" href="#!" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-              </ul>
+              </ul> -->
+			  {{ $flist->links() }}
             </nav>

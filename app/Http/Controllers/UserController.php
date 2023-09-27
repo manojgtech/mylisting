@@ -64,7 +64,7 @@ class UserController extends Controller
 
 }
  public function saveListing(Request $request){
-    $validatedData = $this->validate($request, [
+        $validatedData = $this->validate($request, [
         'category' => 'required',
         'title' => 'required|min:3',
         'city'=>'required',
@@ -73,13 +73,17 @@ class UserController extends Controller
         'phone'=>'digits_between:10,13|numeric',
         'description'=>'required|min:50',
         'images.*' => ['image','mimes:jpg,png,jpeg,gif,svg','max:2048'],
-        'website'=>'url',
+        'cover' => ['image','mimes:jpg,png,jpeg,gif,svg','max:2048'],
+        'logo' => ['image','mimes:jpg,png,jpeg,gif,svg','max:2048'],
+        'website'=>'nullable|url',
         'zip'=>'digits:6|numeric',
-        //'facebook'=>'url',
-        //'twitter'=>'url',
-        //'instagram'=>'url',
-        //'youtube'=>'url'
+        'facebook'=>'nullable|url',
+         'twitter'=>'nullable|url',
+        'instagram'=>'nullable|url',
+        'youtube'=>'nullable|url',
+        'intro'=>'nullable|url'
         ]);
+
         $list=new listing();
         $list->category=$validatedData['category'];
         $list->title=$validatedData['title'];
@@ -94,7 +98,21 @@ class UserController extends Controller
         $list->youtube=isset($validatedData['youtube']) ? $validatedData['youtube']:'';
         $list->instagram=isset($validatedData['instagram']) ? $validatedData['instagram']:'';
         $list->description=htmlentities($validatedData['description']);
+        $list->tags=$request->tags;
         $list->location=isset($request->location) ? $request->location:'';
+        if($request->hasfile('cover'))
+        {
+               $path = $request->cover->store('/images', ['disk' =>   'my_files']);
+               $list->cover=$path;
+        }
+        if($request->hasfile('logo'))
+        {
+               $path = $request->logo->store('/images', ['disk' =>   'my_files']);
+               $list->logo=$path;
+        }
+       
+        
+        $list->intro=isset($request->intro) ? $request->intro:'';
         $list->user_id=Auth::id();
         $list->slug=$this->slugify($validatedData['title']);
         if($list->save()){
@@ -199,6 +217,7 @@ public function updateprofile(Request $request){
     $data['city']=$city;
     $data['list']=listing::find($id);
     $data['id']=$id;
+    
     return view('user.editlist',$data);
  }
  public function updateListing(Request $request){
@@ -211,12 +230,15 @@ public function updateprofile(Request $request){
         'phone'=>'digits_between:10,13|numeric',
         'description'=>'required|min:50',
         'images.*' => ['image','mimes:jpg,png,jpeg,gif,svg','max:2048'],
-        'website'=>'url',
+        'cover' => ['image','mimes:jpg,png,jpeg,gif,svg','max:2048'],
+        'logo' => ['image','mimes:jpg,png,jpeg,gif,svg','max:2048'],
+        'website'=>'nullable|url',
         'zip'=>'digits:6|numeric',
-        'facebook'=>'url',
-        'twitter'=>'url',
-        'instagram'=>'url',
-        'youtube'=>'url'
+        'facebook'=>'nullable|url',
+        'twitter'=>'nullable|url',
+        'instagram'=>'nullable|url',
+        'youtube'=>'nullable|url',
+        'intro'=>'nullable|url'
         ]);
         $id=base64_decode($request->id);
         $list=listing::find($id);
@@ -231,10 +253,25 @@ public function updateprofile(Request $request){
         $list->facebook=$validatedData['facebook'];
         $list->twitter=$validatedData['twitter'];
         $list->youtube=$validatedData['youtube'];
+        $list->intro=$validatedData['intro'];
         $list->instagram=$validatedData['instagram'];
         $list->description=htmlentities($validatedData['description']);
         $list->location=isset($request->location) ? $request->location:'';
-        $list->slug=$this->slugify($validatedData['title']);
+        if($request->hasfile('cover'))
+        {
+               $path = $request->cover->store('/images', ['disk' =>   'my_files']);
+               $list->cover=$path;
+        }
+        if($request->hasfile('logo'))
+        {
+               $path = $request->logo->store('/images', ['disk' =>   'my_files']);
+               $list->logo=$path;
+        }
+        if($validatedData['title']!=$list->title){
+            $list->slug=$this->slugify($validatedData['title']);
+        }
+        $list->tags=$request->tags;
+       
         if($list->save()){
             if($request->hasfile('images'))
             {

@@ -573,7 +573,7 @@
                     <div class="col-md-2">
 						<div class="card">
                            <div class="card-body">
-							 <img src="{{url('images/delhi.jpeg')}}" class="img-thumbnail" />
+							 <a href="{{url('city/delhi')}}"><img src="{{url('images/delhi.jpeg')}}" class="img-thumbnail" /></a>
 							 <div class="card-title"><h3 class="text-center">Delhi</h3></div>
 						   </div>
 						   
@@ -582,7 +582,7 @@
 					<div class="col-md-2">
 						<div class="card">
                            <div class="card-body">
-							 <img src="{{url('images/mumbai.jpeg')}}" class="img-thumbnail" />
+							 <a href="{{url('city/mumbai')}}"><img src="{{url('images/mumbai.jpeg')}}" class="img-thumbnail" /></a>
 							 <div class="card-title"><h3 class="text-center">Mumbai</h3></div>
 						   </div>
 						   
@@ -591,7 +591,7 @@
 					<div class="col-md-2">
 						<div class="card">
                            <div class="card-body">
-							 <img src="{{url('images/hyd.jpeg')}}" class="img-thumbnail" />
+							 <a href="{{url('city/heyderabad')}}"><img src="{{url('images/hyd.jpeg')}}" class="img-thumbnail" /></a>
 							 <div class="card-title"><h3 class="text-center">Heyderabad</h3></div>
 						   </div>
 						   
@@ -600,7 +600,7 @@
 					<div class="col-md-2">
 						<div class="card">
                            <div class="card-body">
-							 <img src="{{url('images/chennai.jpeg')}}" class="img-thumbnail" />
+							 <a href="{{url('city/chennai')}}""><img src="{{url('images/chennai.jpeg')}}" class="img-thumbnail" /></a>
 							 <div class="card-title"><h3 class="text-center">Chennai</h3></div>
 						   </div>
 						   
@@ -609,7 +609,7 @@
 					<div class="col-md-2">
 						<div class="card">
                            <div class="card-body">
-							 <img src="{{url('images/noida.jpeg')}}" class="img-thumbnail" />
+							 <a href="{{url('city/noida')}}"><img src="{{url('images/noida.jpeg')}}" class="img-thumbnail" /></a>
 							 <div class="card-title"><h3 class="text-center">Noida</h3></div>
 						   </div>
 						   
@@ -618,7 +618,7 @@
 					<div class="col-md-2">
 						<div class="card">
                            <div class="card-body">
-							 <img src="{{url('images/bang.jpeg')}}" class="img-thumbnail" />
+							 <a href="{{url('city/bangalore')}}"><img src="{{url('images/bang.jpeg')}}" class="img-thumbnail" /></a>
 							 <div class="card-title"><h3 class="text-center">Bangalore</h3></div>
 						   </div>
 						   
@@ -628,7 +628,7 @@
 					<div class="col-md-2">
 						<div class="card">
                            <div class="card-body">
-							 <img src="{{url('images/lucknow.jpeg')}}" class="img-thumbnail" />
+						   <a href="{{url('city/bangalore')}}"> <img src="{{url('images/lucknow.jpeg')}}" class="img-thumbnail" /></a>
 							 <div class="card-title"><h3 class="text-center">Lucknow</h3></div>
 						   </div>
 						   
@@ -637,7 +637,7 @@
 					<div class="col-md-2">
 						<div class="card">
                            <div class="card-body">
-							 <img src="{{url('images/pune.jpeg')}}" class="img-thumbnail" />
+						   <a href="{{url('city/pune')}}"> <img src="{{url('images/pune.jpeg')}}" class="img-thumbnail" /></a>
 							 <div class="card-title"><h3 class="text-center">Pune</h3></div>
 						   </div>
 						   
@@ -646,7 +646,7 @@
 					<div class="col-md-2">
 						<div class="card">
                            <div class="card-body">
-							 <img src="{{url('images/kanpur.jpeg')}}" class="img-thumbnail" />
+						   <a href="{{url('city/kanpur')}}"><img src="{{url('images/kanpur.jpeg')}}" class="img-thumbnail" /></a>
 							 <div class="card-title"><h3 class="text-center">Kanpur</h3></div>
 						   </div>
 						   
@@ -655,7 +655,7 @@
 					<div class="col-md-2">
 						<div class="card">
                            <div class="card-body">
-							 <img src="{{url('images/guru.jpeg')}}" class="img-thumbnail" />
+						   <a href="{{url('city/gurugram')}}"><img src="{{url('images/guru.jpeg')}}" class="img-thumbnail" /></a>
 							 <div class="card-title"><h3 class="text-center">Gurugram</h3></div>
 						   </div>
 						   
@@ -664,7 +664,7 @@
 					<div class="col-md-2">
 						<div class="card">
                            <div class="card-body">
-							 <img src="{{url('images/jaipur.jpeg')}}" class="img-thumbnail" />
+						   <a href="{{url('city/jaipur')}}"><img src="{{url('images/jaipur.jpeg')}}" class="img-thumbnail" /></a>
 							 <div class="card-title"><h3 class="text-center">Jaipur</h3></div>
 						   </div>
 						   
@@ -673,7 +673,7 @@
 					<div class="col-md-2">
 						<div class="card">
                            <div class="card-body">
-							 <img src="{{url('images/patna.jpeg')}}" class="img-thumbnail" />
+						   <a href="{{url('city/patna')}}"><img src="{{url('images/patna.jpeg')}}" class="img-thumbnail" /></a>
 							 <div class="card-title"><h3 class="text-center">Patna</h3></div>
 						   </div>
 						   

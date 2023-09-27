@@ -40,6 +40,7 @@ Route::get('/user/editlist/{id}',  [App\Http\Controllers\UserController::class, 
 Route::post('/edit-listing', [App\Http\Controllers\UserController::class, 'updateListing']);
 Route::get('/deletelist/{id}', [App\Http\Controllers\UserController::class, 'deletelist']);
 Route::get('/search', [App\Http\Controllers\HomeController::class, 'search']);
+Route::post('/getcitydata', [App\Http\Controllers\HomeController::class, 'getcitydata']);
 Route::post('/registernow', [App\Http\Controllers\HomeController::class, 'registernow']);
 Route::get('/categories', [App\Http\Controllers\HomeController::class, 'categories']);
-Route::post('/categoriesdata', [App\Http\Controllers\HomeController::class, 'categoriesdata']);
+Route::get('/categoriesdata', [App\Http\Controllers\HomeController::class, 'categoriesdata']);

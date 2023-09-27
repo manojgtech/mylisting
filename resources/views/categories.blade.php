@@ -8,7 +8,8 @@
           <!-- Filter-->
           <div class="col-lg-3 order-2 order-lg-1">
             <h2 class="h3 mb-4 pb-1">Filter</h2>
-            <form id="catfilter" onsubmit="return filtercat(event);">
+            <form id="catfilter" onsubmit="return filtercat(event,1);">
+            <button class="btn btn-primary w-100" type="submit"> <i class="fas fa-search me-2 small" id="cfilterbtn"></i>Filter</button>
               <div class="card border-0 shadow-sm mb-4 p-2">
                 <div class="card-body">
                   <h2 class="h5 mb-4">Choose category</h2>
@@ -30,13 +31,18 @@
                   
                 </div>
               </div>
-              <button class="btn btn-primary w-100" type="submit"> <i class="fas fa-search me-2 small" id="cfilterbtn"></i>Search</button>
+              
             </form>
           </div>
           <!-- Listing-->
-          <div class="col-lg-9 order-1 order-lg-2" id="catlistview1">
+          <div class="col-lg-9 order-1 order-lg-2" data-page="1" data-cat=null id="catlistview1">
+
 
           </div>
+          <div style="display: none;" id="catpagemeta"></div>
+          <div class="spinner-border" role="status" style="display: none;">
+  <span class="visually-hidden">Loading...</span>
+</div>
         </div>
       </div>
     </section>

@@ -164,6 +164,7 @@ class HomeController extends Controller
           
     }
     public function categories(Request $request){
+       // echo $hashedPassword = Hash::make('Pass@1234');die;
         $data['cities']=city::all();
         $data['cats']=category::leftJoin('listings',function($query){
             $query->on("categories.id",'=',"listings.category");
@@ -173,13 +174,26 @@ class HomeController extends Controller
         return view("categories",$data);
     }
     public function categoriesdata(Request $request){
-        $cats=isset($request->cats) ? $request->cats:[];
-        $catd=listing::whereIn('category',$cats)->get();
-        $data['flist']=$catd;
+        $catd=listing::paginate(2);
+        $count=listing::count();
+        $cats=(isset($request->cats)) ? $request->cats:false;
+        if($request->ajax() && $cats){
+            $catd=listing::whereIn('category',$cats);
+            $count=$catd->count();
+            $catd=$catd->paginate(2);
+        }
+         $data['flist']=$catd;
+         $data['count']=$count;
+         $data['limit']=2;
          $html = view('catlistdata', $data)->render();
          echo json_encode(["status"=>true,'html'=>$html]);
 
     }
+     public function getcitydata(Request $request){
+         $state=$request->state;
+         $cities=city::where("state_id",$state)->get();
+         echo json_encode(['data'=>$cities]);
 
+     }
     
 }

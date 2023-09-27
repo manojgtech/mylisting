@@ -25,7 +25,7 @@
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     </head>
-    <body data-baseurl='{{url("/")}}'>
+    <body data-baseurl="{{env('APP_URL','https://finded.in')}}">
     <style>
    
 </style>
@@ -70,6 +70,12 @@
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{url('/add-listing')}}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+              Add Listing
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{url('/dashboard')}}">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
@@ -147,7 +153,7 @@
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/38.1.1/classic/ckeditor.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="{{asset('assets/js/jquery.js')}}"></script>
 <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -194,6 +200,8 @@ $(document).ready(function () {
     $("#category").select2();
     $("#state").select2();
     $("#city").select2();
+   
+    
 
 });  
 function delList(th){
@@ -214,6 +222,70 @@ var baseurl=$("body").attr("data-baseurl");
  location.href=baseurl+"/deletelist/"+id;
 }
 
+  function maketags(event){
+    
+    let tag=document.querySelector("#business_tags");
+     
+     var xc=document.getElementById("tagdataa").value=="" ? []:JSON.parse(document.getElementById("tagdataa").value);
+      let tagval=tag.value.trim();
+    console.log(event.keyCode,"key",tagval);
+    if (event.keyCode === 13 || event.key=='Enter') {
+      event.preventDefault();
+      let div=document.querySelector(".tagsdiv");
+      let id="tag_"+getRandomInt(23444,4567777);
+      if(tagval.length>3){
+         tag.value="";
+         tagval=tagval.replace("&quot;","");
+         xc.push(tagval.trim());
+         let fhtml=div.innerHTML+"<span class='badge bg-secondary'  id='"+id+"'>"+tagval+"<span class='deltag pull-right text-warning' onclick='deltag(\""+id+"\");'>X</span>&nbsp;";
+         div.innerHTML=fhtml;
+         document.getElementById("tagdataa").value=JSON.stringify(xc);
+      }
+    
+    }
+  
+
+}
+function deltag(tagid){
+ id=tagid;
+  let v=$("#"+id).text();
+ $("#"+id).remove();
+ let xc=JSON.parse(document.getElementById("tagdataa").value);
+ document.getElementById("tagdataa").value=fhtml=document.querySelector(".tagsdiv").innerHTML;
+ let i=xc.findIndex(function(it){
+  return it=v;
+ });
+ sc.splice(i,1);
+ document.getElementById("tagdataa").value=JSON.parse(sc);
+}
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function fetchcity(th){
+  var s=$(th).val();
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+     });
+     var burl=$("body").data('baseurl');
+     var saveData = $.ajax({
+      type: 'POST',
+      url: burl+"/getcitydata",
+      data:{state:s} ,
+      dataType: "text",
+      success: function(resultData) {
+         var list=JSON.parse(resultData);
+         var opt="<option>Select city</option>";
+          list.data.forEach(element => {
+             opt=opt+"<option value='"+element.id+"'>"+element.city+"<option>";
+          });
+          $("#city").html(opt);
+      }
+    });
+}
 </script>
 
 

@@ -166,7 +166,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Description') }}<sup>*(min 50 chars)</sup></label>
+                            <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Description') }}<p>*(min 50 chars)</p></label>
 
                             <div class="col-md-6">
                                  <textarea type="description"  id="descriptioneditor"  class="form-control @error('description') is-invalid @enderror" name="description"  required autocomplete="description" autofocus>
@@ -181,6 +181,36 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="row mb-3">
+                            <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Logo') }}</label>
+                            <div class="col-md-6">
+                            <input type="file" id="logo"  class="form-control @error('logo') is-invalid @enderror" name="logo" autofocus>
+                              <img src="{{!empty($list->logo) ? url($list->logo):''}}" style="width: 120px;"/>
+                                @error('logo')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                              
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Page Cover Pic') }}</label>
+                            <div class="col-md-6">
+                            <img src="{{!empty($list->cover) ? url($list->cover):''}}" style="width: 120px;"/>
+                            <input type="file" id="cover"  class="form-control @error('logo') is-invalid @enderror" name="cover" autofocus>
+            
+                                @error('cover')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                              
+                            </div>
+                        </div>
+
 
                         <div class="row mb-3">
                             <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Images') }}</label>
@@ -211,8 +241,8 @@
 
                         <!-- cover -->
 
-<!-- social link -->
-<div class="row mb-3">
+                                <!-- social link -->
+                                <div class="row mb-3">
                             <label for="location" class="col-md-4 col-form-label text-md-end">{{ __('Facebook') }}</label>
 
                             <div class="col-md-6">
@@ -257,6 +287,50 @@
 
                             <div class="col-md-6">
                                 <input type="url" id="youtube" value="{{$list->youtube}}" class="form-control @error('youtube') is-invalid @enderror" name="youtube"   autofocus>
+                                  
+
+                                @error('youtube')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="location" class="col-md-4 col-form-label text-md-end">{{ __('Business Video Url') }}</label>
+
+                            <div class="col-md-6">
+                                <input type="url" id="intro"  value="{{$list->intro}}" class="form-control @error('intro') is-invalid @enderror" name="intro"  required autocomplete="intro" autofocus>
+                                  
+
+                                @error('intro')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="location" class="col-md-4 col-form-label text-md-end">{{ __('Tags') }}</label>
+
+                            <div class="col-md-6">
+                                <div class="tagsdiv">
+                                @if($list->tags)
+                                @php
+                                 $tgs=json_decode($list->tags);
+                                @endphp
+                                  @foreach($tgs as $tg)
+                                  @php 
+                                   $idd='tg_'.rand(3455,667772);
+                                  @endphp
+                                  <span class='badge bg-secondary' id="{{$idd}}">{{$tg}}<span class='deltag pull-right text-warning' onclick='deltag("{{$idd}}");'>X</span>&nbsp;
+                                  @endforeach
+                                @endif
+                                </div>
+                                <input type="hidden" id="tagdataa" name="tags" value="{{$list->tags}}" />
+                                <br/>
+                                <input type="text" id="business_tags" onkeydown="maketags(event);"  class="form-control @error('tags') is-invalid @enderror"    autofocus>
                                   
 
                                 @error('youtube')

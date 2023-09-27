@@ -10,40 +10,37 @@
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-       @if($theme=="theme1")
+      
+    
         <link rel="stylesheet" href="{{ asset('asset/vendor/choices.js/public/assets/styles/choices.min.css') }}">
-    <!-- Swiper slider-->
     <link rel="stylesheet" href="{{ asset('asset/vendor/swiper/swiper-bundle.min.css') }}">
-    <!-- Google fonts-->
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700&amp;display=swap">
-    <!-- Lightbox-->
+<!-- 
     <link rel="stylesheet" href="{{ asset('asset/vendor/glightbox/css/glightbox.min.css') }}">
-    <!-- theme stylesheet-->
+    
     <link rel="stylesheet" href="{{ asset('asset/css/style.default.css') }}" id="theme-stylesheet">
-    <!-- Custom stylesheet - for your changes-->
+    
     <link rel="stylesheet" href="{{ asset('asset/css/custom.css') }}">
 
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        
-     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/css/lightbox.min.css" rel="stylesheet" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
 
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" rel="stylesheet">
-          <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
-
-        @else
-        <!--font-awesome.min.css-->
         <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('asset/vendor/swiper/swiper-bundle.min.css') }}"> -->
 
         <!--linear icon css-->
+        <!-- <link rel="stylesheet" href="{{ asset('asset/css/style.default.css') }}" id="theme-stylesheet"/> -->
 		<link rel="stylesheet" href="{{ asset('assets/css/linearicons.css') }}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700&amp;display=swap">
 
-		<!--animate.css-->
+<link rel="stylesheet" href="{{ asset('asset/vendor/glightbox/css/glightbox.min.css') }}">
+	
         <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+        
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-		<!--flaticon.css-->
+	
         <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
 
 		<!--slick.css-->
@@ -61,15 +58,15 @@
         
         <!--responsive.css-->
         <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
+        <style>
+          .col-lg-3.px-lg-2 {
+    margin-bottom: 19px;
+}
+p.categories-item-number.small.mb-0{
+  background-color: #fef !important;
+}
+        </style>
         
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		
-        <!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-       @endif
     </head>
     <body id="page-top" data-baseurl="{{env('APP_URL','https://finded.in')}}">
 
@@ -220,6 +217,30 @@
    <!-- Footer-->
    
 		<!--subscription strat -->
+
+        <section class="pb-5">
+      <div class="container pb-5">
+        <header class="text-center mb-5">
+          <h2 class="mb-1">Explore our categories</h2>
+          <!-- <p class="text-muted text-sm">Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</p> -->
+        </header>
+        <div class="row text-center gy-4">
+          <div class="col-lg-3 px-lg-2">
+            <div class="categories-item card border-0 shadow hover-transition">
+              <div class="card-body px-4 py-5">
+                    <svg class="svg-icon mb-3">
+                      <use xlink:href="#!stack-1"> </use>
+                    </svg>
+                <h2 class="h5"> <a class="stretched-link reset-anchor-inherit" href="#!">Marketing</a></h2>
+                <p class="categories-item-number small mb-0">2 Items</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-12 text-center pt-4"><a class="btn btn-primary" href="#!">Show more categories</a></div>
+        </div>
+      </div>
+    </section>
 		<section id="contact"  class="subscription">
 			<div class="container">
 				<div class="subscribe-title text-center">
@@ -297,18 +318,18 @@
         </footer><!--/.footer-->
 		<!--footer end-->
 		
-		<script src="assets/js/jquery.js"></script>
+		<script src="{{asset('assets/js/jquery.js')}}"></script>
         
         <!--modernizr.min.js-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 		
-		<!--bootstrap.min.js-->
+		
         <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 		
-		<!-- bootsnav js -->
+		
 		<script src="{{asset('assets/js/bootsnav.js')}}"></script>
 
-        <!--feather.min.js-->
+    
         <script  src="{{asset('assets/js/feather.min.js')}}"></script>
 
         <!-- counter js -->
@@ -319,9 +340,11 @@
         <script src="{{asset('assets/js/slick.min.js')}}"></script>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-		     
+        <script  src="{{ asset('asset/vendor/swiper/swiper-bundle.min.js') }}"></script>
         <!--Custom JS-->
         <script src="{{asset('assets/js/custom.js')}}"></script>
+        <script src="{{asset('asset/vendor/glightbox/js/glightbox.min.js')}}"></script>
+        <script src="{{asset('assets/js/front.js')}}"></script>
         <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script> 
@@ -331,19 +354,19 @@
 <script>
     $(document).ready(function(){
         getLocation();
-    //     $("#news-slider").owlCarousel({
-    //     items : 3,
-    //     itemsDesktop:[1199,3],
-    //     itemsDesktopSmall:[980,2],
-    //     itemsMobile : [600,1],
-    //     navigation:true,
-    //     navigationText:["",""],
-    //     pagination:true,
-    //     autoPlay:true
-    // });
-    
+    filtercat(event,2,1);
+    if($("#catlinkid").length){
+        $("#catlinkid a").each(function(el,elem){
+       $(elem).removeAttr("href")
     });
-        function getLocation() {
+    
+        
+       
+        
+    }
+    
+});
+    function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
   } else { 
@@ -356,13 +379,58 @@ function showPosition(position) {
   document.body.setAttribute("data-lat",position.coords.latitude);
   document.body.setAttribute("data-lang",position.coords.longitude);
 }
-
-
-
-
     </script>
-<!-- footer -->
+
     
+    <script>
+      
+      function filtercat(e,t,p){
+        e.preventDefault();
+        var form=$("#catfilter");
+        const formData = new FormData();
+        var burl=$("body").data('baseurl');
+        $(".spinner-border").css("display",'block');
+        $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+     });
+     
+     let c= t==1 ? form.serialize():null;
+     $("#catpagemeta").attr("data-page",p)
+    $("#catpagemeta").attr("data-cats",c);
+        var saveData = $.ajax({
+      type: 'GET',
+      url: burl+"/categoriesdata",
+      data: "c="+c+"&page="+p,
+      dataType: "text",
+      success: function(resultData) { 
+        var res=JSON.parse(resultData);
+        $(".spinner-border").css("display",'none');
+        $("#catlistview1").html(res.html);
+        setTimeout(() => {
+            $("#catlinkid a").each(function(el,elem){
+            $(elem).removeAttr("href")
+            $(elem).click(function(){
+              var p=$(this).html();
+              $("#catpagemeta").attr("data-cat",c)
+              var x=c==null ? 2:1;
+              
+              filtercat(e,x,p);
+           });
+
+          });
+        $("#catlinkid").css("display","block");
+        }, 1000);
+        
+         }
+});
+return false;
+
+      }
+
+     
+    </script>
     <script>
       // ------------------------------------------------------- //
       //   Inject SVG Sprite - 
@@ -386,31 +454,8 @@ function showPosition(position) {
       // while using file:// protocol
       // pls don't forget to change to your domain :)
       injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg'); 
-      function filtercat(e){
-        e.preventDefault();
-        var form=$("#catfilter");
-        const formData = new FormData();
-        var burl=$("body").data('baseurl');
-        $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-     });
-        var saveData = $.ajax({
-      type: 'POST',
-      url: burl+"/categoriesdata",
-      data: form.serialize(),
-      dataType: "text",
-      success: function(resultData) { 
-        var res=JSON.parse(resultData);
-        $("#catlistview1").html(res.html);
-        return false; }
-});
-return false;
-
-      }
+      
     </script>
-    <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
   </body>
 </html>
