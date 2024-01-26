@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Auth;
 use Session;
 use Storage;
 use App\Http\Traits\common;
+Use App\Models\customer;
 
 
 class UserController extends Controller
@@ -306,4 +307,5 @@ public function updateprofile(Request $request){
         return Redirect("/user/listings")->withSuccess("Listing has been deleted successfully.");
     }
  }
+
 }

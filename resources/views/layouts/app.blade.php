@@ -9,105 +9,90 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-      
-    
-        <link rel="stylesheet" href="{{ asset('asset/vendor/choices.js/public/assets/styles/choices.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('asset/vendor/swiper/swiper-bundle.min.css') }}">
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700&amp;display=swap">
-<!-- 
-    <link rel="stylesheet" href="{{ asset('asset/vendor/glightbox/css/glightbox.min.css') }}">
-    
-    <link rel="stylesheet" href="{{ asset('asset/css/style.default.css') }}" id="theme-stylesheet">
-    
-    <link rel="stylesheet" href="{{ asset('asset/css/custom.css') }}">
-
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  
-
-        <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('asset/vendor/swiper/swiper-bundle.min.css') }}"> -->
-
-        <!--linear icon css-->
-        <!-- <link rel="stylesheet" href="{{ asset('asset/css/style.default.css') }}" id="theme-stylesheet"/> -->
-		<link rel="stylesheet" href="{{ asset('assets/css/linearicons.css') }}">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700&amp;display=swap">
-
-<link rel="stylesheet" href="{{ asset('asset/vendor/glightbox/css/glightbox.min.css') }}">
-	
-        <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
-        
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	
-        <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
-
-		<!--slick.css-->
-        <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
-		<link rel="stylesheet" href="{{ asset('assets/css/slick-theme.css') }}">
-		
-        <!--bootstrap.min.css-->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-		
-		<!-- bootsnav -->
-		<link rel="stylesheet" href="{{ asset('assets/css/bootsnav.css') }}" >	
-        
-        <!--style.css-->
+        <link rel="stylesheet" href="{{ asset('assets/css/simple-line-icons.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/themify-icons.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/set1.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-        
-        <!--responsive.css-->
-        <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/swiper.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
+        <script src="{{asset('assets/js/jquery-3.2.1.min.js')}}"></script>
+	
         <style>
           .col-lg-3.px-lg-2 {
     margin-bottom: 19px;
 }
-p.categories-item-number.small.mb-0{
+#loginModal p.categories-item-number.small.mb-0,#RegModal p.categories-item-number.small.mb-0{
   background-color: #fef !important;
+}
+@media (min-width: 576px) {
+  #loginModal .modal-dialog,#RegModal .modal-dialog{
+    max-width: 400px;
+  }
+  #loginModal .modal-dialog .modal-content,#RegModal .modal-dialog .modal-content{
+    padding: 1rem;
+  }
+}
+#loginModal .modal-header .close,#RegModal.modal-header .close {
+  margin-top: -1.5rem;
+}
+
+#loginModal .form-title,#RegModal .form-title{
+  margin: -2rem 0rem 2rem;
+}
+
+#loginModal .btn-round,#RegModal .btn-round {
+  border-radius: 3rem;
+}
+
+#loginModal .delimiter,#RegModal .signup-section {
+  padding: 1rem;
+}
+
+#loginModal .social-buttons .btn,#RegModal .signup-section {
+  margin: 0 0.5rem 1rem;
+}
+
+#loginModal .signup-section,#RegModal .signup-section {
+  padding: 0.3rem 0rem;
 }
         </style>
         
     </head>
     <body id="page-top" data-baseurl="{{env('APP_URL','https://finded.in')}}">
 
-    <header id="header-top" class="header-top" style="display:none;">
-			<ul class="d-none">
-				<li>
-					<div class="header-top-left">
-						<ul style="display: none;">
-							<li class="select-opt">
-								<select name="language" id="language">
-									<option value="default">EN</option>
-									<option value="Bangla">BN</option>
-									<option value="Arabic">AB</option>
-								</select>
-							</li>
-							<li class="select-opt">
-								<select name="currency" id="currency">
-									<option value="usd">USD</option>
-									<option value="euro">Euro</option>
-									<option value="bdt">BDT</option>
-								</select>
-							</li>
-							<li class="select-opt">
-								<a href="#"><span class="lnr lnr-magnifier"></span></a>
-							</li>
-						</ul>
-					</div>
-				</li>
-				<li class="head-responsive-right pull-right">
-					<div class="header-top-right">
-						<ul>
-							<li class="header-top-contact">
-								+1 222 777 6565
-							</li>
-              @guest
-                            @if (Route::has('login'))
-                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+    <div class="nav-menu">
+        <div class="bg transition">
+            <div class="container-fluid fixed">
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav class="navbar navbar-expand-lg navbar-light">
+                            <a class="navbar-brand" href="{{url('/')}}">{{ config('app.name', 'Finded') }}</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="icon-menu"></span>
+              </button>
+                            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                                <ul class="navbar-nav">
+                                   
+                                <li class="nav-item active">
+                                        <a class="nav-link" href="#">Categories</a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="#">Contact</a>
+                                    </li>
+                                  
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="#">About</a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" data-toggle="modal" data-target="#loginModal">Login</a>
+                                    </li>
+                                    @guest
+                            @if (Route::has('register'))
+                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Free Listing</a></li>
                         @endif
-                        @if (Route::has('register'))
-                        <li class="nav-item"><a class="nav-link" href="{{ route('getstarted') }}">Signup</a></li>
-                        @endif
+                        
                         @else
                         <li class="nav-item dropdown">
                         <li class="nav-item">  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{url('/dashboard')}}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -132,81 +117,16 @@ p.categories-item-number.small.mb-0{
                                 </div>
                             </li>
                         @endguest
-             
-						</ul>
-					</div>
-				</li>
-			</ul>
-					
-		</header><!--/.header-top-->
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 	
-    <!-- top-area Start -->
-		<section class="top-area">
-			<div class="header-area">
-				<!-- Start Navigation -->
-			    <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy"  data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
-
-			        <div class="container">
-
-			            <!-- Start Header Navigation -->
-			            <div class="navbar-header">
-			                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-			                    <i class="fa fa-bars"></i>
-			                </button>
-			                <a class="navbar-brand" href="{{url('/')}}">{{ config('app.name', 'Laravel') }}</a>
-
-			            </div><!--/.navbar-header-->
-			            <!-- End Header Navigation -->
-
-			            <!-- Collect the nav links, forms, and other content for toggling -->
-			            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
-			                <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-			                    <li class="nav-item active"><a href="{{url('/')}}">Home</a></li>
-			                    <li class="nav-item"><a href="{{url('/categories')}}">Categories</a></li>
-			                    <!-- <li class="nav-item"><a href="{{url('explore')}}">Listings</a></li> -->
-			                    <!-- <li class="scroll"><a href="#reviews">review</a></li> -->
-			                    <li class="nav-item"><a href="{{url('blog')}}">Blogs</a></li>
-                                @guest
-                            @if (Route::has('login'))
-                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                        @endif
-                        @if (Route::has('register'))
-                        <li class="nav-item"><a class="nav-link" href="{{ route('getstarted') }}">Signup</a></li>
-                        @endif
-                        @else
-                        <li class="nav-item dropdown">
-                                <li class="nav-item"><a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{url('/dashboard')}}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li class="nav-item"> <a class="dropdown-item" href="{{url('/dashboard')}}">
-                                        {{ __('Dashboard') }}
-                                    </a></li>
-                                    <li class="nav-item"> <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a></li>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-			                    <!-- <li class="scroll"><a href="#contact">contact</a></li> -->
-			                </ul><!--/.nav -->
-			            </div><!-- /.navbar-collapse -->
-			        </div><!--/.container-->
-			    </nav><!--/nav-->
-			    <!-- End Navigation -->
-			</div><!--/.header-area-->
-		    <div class="clearfix"></div>
-
-		</section><!-- /.top-area-->
+   
 		<!-- top-area End -->
 
         <!-- Navigation-->
@@ -214,143 +134,237 @@ p.categories-item-number.small.mb-0{
         <main>
             @yield('content')
         </main>
-   <!-- Footer-->
-   
-		<!--subscription strat -->
+  
+        <footer class="text-center text-lg-start bg-body-tertiary text-muted">
+  <!-- Section: Social media -->
+  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    <!-- Left -->
+    <div class="me-5 d-none d-lg-block">
+      <span>Get connected with us on social networks:</span>
+    </div>
+    <!-- Left -->
 
-        <section class="pb-5">
-      <div class="container pb-5">
-        <header class="text-center mb-5">
-          <h2 class="mb-1">Explore our categories</h2>
-          <!-- <p class="text-muted text-sm">Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</p> -->
-        </header>
-        <div class="row text-center gy-4">
-          <div class="col-lg-3 px-lg-2">
-            <div class="categories-item card border-0 shadow hover-transition">
-              <div class="card-body px-4 py-5">
-                    <svg class="svg-icon mb-3">
-                      <use xlink:href="#!stack-1"> </use>
-                    </svg>
-                <h2 class="h5"> <a class="stretched-link reset-anchor-inherit" href="#!">Marketing</a></h2>
-                <p class="categories-item-number small mb-0">2 Items</p>
-              </div>
+    <!-- Right -->
+    <div>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-google"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <!-- Right -->
+  </section>
+  <!-- Section: Social media -->
+
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3"></i>Finded
+          </h6>
+          <p>
+            Find you local business ,shop ,hotels and events
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Products
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">Contact</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">About</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Why Us</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Services</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Useful links
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">Privacy Policy</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Categories</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Cities</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Help</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">Contact Us</h6>
+          <p><i class="fas fa-home me-3"></i> Sector 22,Noida ,UP</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            info@finded.in
+          </p>
+          <p><i class="fas fa-phone me-3"></i> +91 8447311900</p>
+          <p><i class="fas fa-print me-3"></i> +91 8351038570</p>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2023 Copyright:
+    <a class="text-reset fw-bold" href="https://finded.in/">finded.in</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-title text-center">
+          <h4>Login</h4>
+        </div>
+        <div class="d-flex flex-column text-center">
+          <form id="login_form" action="{{url('userlogin')}}">
+            <div class="form-group">
+              <input type="email" name="email" class="form-control" id="email1" placeholder="Your email address...">
             </div>
-          </div>
+            <div class="form-group">
+              <input type="password" name="password" class="form-control" id="password1" placeholder="Your password...">
+            </div>
+            <button type="submit" class="btn btn-info btn-block btn-round">Login</button>
+          </form>
           
-          <div class="col-lg-12 text-center pt-4"><a class="btn btn-primary" href="#!">Show more categories</a></div>
+          <div class="text-center text-muted delimiter">or use a social network</div>
+          
+      </div>
+    </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <div class="signup-section">Not a member yet? <a href="{{url('signup')}}" class="text-info"> Sign Up</a>.</div>
+      </div>
+  </div>
+</div> 
+</div>
+<!-- register -->
+
+<div class="modal fade" id="RegModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-title text-center">
+          <h4>Register</h4>
+        </div>
+        <div class="d-flex flex-column text-center">
+          <form>
+          <div class="form-group">
+              <input type="text"  name="name" class="form-control" id="regename" placeholder="Your name...">
+            </div>
+            <div class="form-group">
+              <input type="tel" class="form-control" id="reg_phone" placeholder="Your mobile address...">
+            </div>
+            <div class="form-group">
+              <input type="email" name="reg_email" class="form-control" id="reg_email" placeholder="Your email address...">
+            </div>
+            <div class="form-group">
+              <input type="password" name="password" class="form-control" id="reg_password" placeholder="Your password...">
+            </div>
+            <button type="button" class="btn btn-info btn-block btn-round">Login</button>
+          </form>
+          
+          <div class="text-center text-muted delimiter">or use a social network</div>
+          <div class="d-flex justify-content-center social-buttons">
+            <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Twitter">
+              <i class="fab fa-twitter"></i>
+            </button>
+            <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Facebook">
+              <i class="fab fa-facebook"></i>
+            </button>
+            <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip" data-placement="top" title="Linkedin">
+              <i class="fab fa-linkedin"></i>
+            </button>
         </div>
       </div>
-    </section>
-		<section id="contact"  class="subscription">
-			<div class="container">
-				<div class="subscribe-title text-center">
-					<h2>
-						do you want to add your business listing with us?
-					</h2>
-					<p>
-						Listrace offer you to list your business with us and we very much able to promote your Business.
-					</p>
-				</div>
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="subscription-input-group">
-							<form action="{{url('registernow')}}" method="post">
-                                @csrf
-								<input type="email" name="email" required class="subscription-input-form" placeholder="Enter your email here">
-								<button class="appsLand-btn subscribe-btn" type="submit">
-									creat account
-								</button>
-							</form>
-						</div>
-					</div>	
-				</div>
-			</div>
-
-		</section><!--/subscription-->	
-		<!--subscription end -->
-
-		<!--footer start-->
-		<footer id="footer"  class="footer">
-			<div class="container">
-				<div class="footer-menu">
-		           	<div class="row">
-			           	<div class="col-sm-3">
-			           		 <div class="navbar-header">
-				                <a class="navbar-brand" href="{{url('/')}}">{{ config('app.name', 'Laravel') }}</a>
-				            </div><!--/.navbar-header-->
-			           	</div>
-			           	<div class="col-sm-9">
-			           		<ul class="footer-menu-item">
-			                    <li class="scroll"><a href="#works">how it works</a></li>
-			                    
-			                </ul><!--/.nav -->
-			           	</div>
-		           </div>
-				</div>
-				<div class="hm-footer-copyright">
-					<div class="row">
-						<div class="col-sm-5">
-							<p>
-								&copy;copyright. designed and developed by <a href="https://www.finded,in.com/">Finded.in</a>
-							</p>
-						</div>
-						<div class="col-sm-7">
-							<div class="footer-social">
-								<span><i class="fa fa-phone"> +1  (222) 777 8888</i></span>
-								<a href="#"><i class="fa fa-facebook"></i></a>	
-								<a href="#"><i class="fa fa-twitter"></i></a>
-								<a href="#"><i class="fa fa-linkedin"></i></a>
-								<a href="#"><i class="fa fa-google-plus"></i></a>
-							</div>
-						</div>
-					</div>
-					
-				</div><!--/.hm-footer-copyright-->
-			</div><!--/.container-->
-
-			<div id="scroll-Top">
-				<div class="return-to-top">
-					<i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title="" data-original-title="Back to Top" aria-hidden="true"></i>
-				</div>
-				
-			</div><!--/.scroll-Top-->
-			
-        </footer><!--/.footer-->
-		<!--footer end-->
+    </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <div class="signup-section">Not a member yet? <a href="#a" class="text-info"> Sign Up</a>.</div>
+      </div>
+  </div>
+</div> 
+</div>
 		
-		<script src="{{asset('assets/js/jquery.js')}}"></script>
+		<script src="{{asset('assets/js/jquery-3.2.1.min.js')}}"></script>
         
         <!--modernizr.min.js-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-		
-		
-        <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-		
-		
-		<script src="{{asset('assets/js/bootsnav.js')}}"></script>
-
-    
-        <script  src="{{asset('assets/js/feather.min.js')}}"></script>
+        <script  src="{{asset('assets/js/popper.min.js')}}"></script>
 
         <!-- counter js -->
-		<script src="{{asset('assets/js/jquery.counterup.min.js')}}"></script>
-		<script src="{{asset('assets/js/waypoints.min.js')}}"></script>
+		<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('assets/js/jquery.magnific-popup.js')}}"></script>
+        <script src="{{asset('assets/js/swiper.min.js')}}"></script>
+        <script>
+        $(window).scroll(function() {
+            // 100 = The point you would like to fade the nav in.
 
-        <!--slick.min.js-->
-        <script src="{{asset('assets/js/slick.min.js')}}"></script>
+            if ($(window).scrollTop() > 100) {
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-        <script  src="{{ asset('asset/vendor/swiper/swiper-bundle.min.js') }}"></script>
-        <!--Custom JS-->
-        <script src="{{asset('assets/js/custom.js')}}"></script>
-        <script src="{{asset('asset/vendor/glightbox/js/glightbox.min.js')}}"></script>
-        <script src="{{asset('assets/js/front.js')}}"></script>
-        <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script> 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>   
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
+                $('.fixed').addClass('is-sticky');
+
+            } else {
+
+                $('.fixed').removeClass('is-sticky');
+
+            };
+        });
+    </script>
 <script>
     $(document).ready(function(){
         getLocation();
@@ -379,13 +393,17 @@ function showPosition(position) {
   document.body.setAttribute("data-lat",position.coords.latitude);
   document.body.setAttribute("data-lang",position.coords.longitude);
 }
+function openReg(){
+  $("#loginModal").modal('hide');
+  $("#RegModal").modal('show');
+}
     </script>
 
     
     <script>
       
       function filtercat(e,t,p){
-        e.preventDefault();
+        //e.preventDefault();
         var form=$("#catfilter");
         const formData = new FormData();
         var burl=$("body").data('baseurl');
@@ -455,6 +473,78 @@ return false;
       // pls don't forget to change to your domain :)
       injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg'); 
       
+    </script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 3,
+            slidesPerGroup: 3,
+            loop: true,
+            loopFillGroupWithBlank: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
+    <script>
+        if ($('.image-link').length) {
+            $('.image-link').magnificPopup({
+                type: 'image',
+                gallery: {
+                    enabled: true
+                }
+            });
+        }
+        if ($('.image-link2').length) {
+            $('.image-link2').magnificPopup({
+                type: 'image',
+                gallery: {
+                    enabled: true
+                }
+            });
+        }
+
+        
+        //loginnow
+        $("#login_form").submit(function(e){
+         e.preventDefault();
+
+        var all =  new FormData(document.getElementById("login_form"));
+        console.log("all",all);
+        
+          var f=document.getElementById("login_form");
+          var action=f.getAttribute("action");
+          let email=$("#email1").val();
+          let password=$("#password1").val();
+          var data={}
+        $.ajax({
+            url: action,
+            type: "POST",
+            data: {email,password},
+            //processData: false,
+            success: function(data){
+                if (data.status==0) {
+                    $.each(data.error, function(prefix, val){
+                        $('span.'+prefix+'_error').text(val[0]);
+                    });
+                }
+                if(data == 1){
+                    window.location.replace(
+                     '{{url("/")}}'
+                    );
+                }else if(data == 2){
+                    $("#show_error").hide().html("Invalid login details");
+                }
+
+            }
+            });
+
+        });
+
     </script>
  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
   </body>

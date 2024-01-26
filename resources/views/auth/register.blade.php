@@ -1,7 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<style>
+    nav{
+        background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url(../assets/img/bg-masthead.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    }
+  .container-fluid{
+         padding-left:0px;
+         padding-right:0px;
+    }
+</style>
+<div class="container" style="margin-top: 120px;margin-bottom:100px;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

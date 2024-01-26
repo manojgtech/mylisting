@@ -1,303 +1,337 @@
 @extends('layouts.app')
 
 @section('content')
-  <!-- Hero section-->
-  <section class="hero d-flex align-items-end py-5 bg-cover bg-center" style="background: url({{url($list->cover)}})">
-      <div class="container z-index-20 py-5 py-lg-0">
-        <div class="row align-items-end gy-4">
-          <div class="col-lg-7">
-            <div class="d-flex align-items-center">
-              <div class="flex-shrink-0"><img class="rounded-circle" src="{{url($list->logo)}}" alt="" width="80"></div>
-              <div class="ms-3">
-                <h1 class="text-white">{{$list->title}}</h1>
-                <ul class="list-inline mb-0 text-small">
-                  <li class="list-inline-item m-0"><i class="fas fa-star text-white"></i></li>
-                  <li class="list-inline-item m-0"><i class="fas fa-star text-white 1"></i></li>
-                  <li class="list-inline-item m-0"><i class="fas fa-star text-white 2"></i></li>
-                  <li class="list-inline-item m-0"><i class="fas fa-star text-white 3"></i></li>
-                  <li class="list-inline-item m-0"><i class="fas fa-star text-white 4"></i></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-5 text-lg-end">
-            <ul class="list-inline mb-0">
-              <li class="list-inline-item m-1"><a class="btn btn-primary" href="#!"> <i class="fas fa-link me-2"></i>Website</a></li>
-              <li class="list-inline-item m-1"><a class="btn btn-outline-light px-3" href="#!" rel="tooltip" data-bs-placement="top" title="Bookmark"><i class="fas fa-heart"></i></a></li>
-              <li class="list-inline-item m-1"><a class="btn btn-outline-light px-3" href="#!" rel="tooltip" data-bs-toggle="modal" data-bs-placement="top" title="Share" data-bs-target="#shareModal"><i class="fas fa-reply"></i></a></li>
-              <li class="list-inline-item m-1"><a class="btn btn-outline-light px-3" href="#!" rel="tooltip" data-bs-placement="top" title="Report"><i class="fas fa-info-circle"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--  Share modal -->
-    <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content p-3">
-          <button class="btn-close d-inline-block ms-auto px-1" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-          <div class="modal-header border-0 px-4 py-0">
-            <h5 class="modal-title" id="exampleModalCenterTitle">Share this tool</h5>
-          </div>
-          <div class="modal-body px-4">
-            <ul class="list-inline mb-0">
-              <li class="list-inline-item me-1 mb-1"><a class="social-link facebook" href="#!"><i class="fa-fw fab fa-facebook-f"></i></a></li>
-              <li class="list-inline-item me-1 mb-1"><a class="social-link twitter" href="#!"><i class="fa-fw fab fa-twitter"></i></a></li>
-              <li class="list-inline-item me-1 mb-1"><a class="social-link tumblr" href="#!"><i class="fa-fw fab fa-tumblr"></i></a></li>
-              <li class="list-inline-item me-1 mb-1"><a class="social-link linkedin" href="#!"><i class="fa-fw fab fa-linkedin-in"></i></a></li>
-              <li class="list-inline-item me-1 mb-1"><a class="social-link whatsapp" href="#!"><i class="fa-fw fab fa-whatsapp"></i></a></li>
-              <li class="list-inline-item me-1 mb-1"><a class="social-link pinterest" href="#!"><i class="fa-fw fab fa-pinterest"></i></a></li>
-              <li class="list-inline-item me-1 mb-1"><a class="social-link fa-envelope" href="#!"><i class="fa-fw far "></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <section class="py-5">
-      <div class="container py-5">
-        <div class="row gy-5">
-          <div class="col-lg-8">
-            <!-- About-->
-            <div class="card border-0 shadow-sm mb-4 mb-lg-5 p-2 p-lg-0">
-              <div class="card-body p-lg-5">
-                <h2 class="h3 mb-4">About Us</h2>
-                <div>
-                  {!! html_entity_decode($list->description) !!}
+<style>
+    .fb-profile-block {
+  margin: auto;
+  position: relative;
+  width: 100%;
+}
+/* .cover-container{
+    background: #1E90FF;
+    background: -webkit-radial-gradient(bottom, #73D6F5 12%, #1E90FF);
+    background: radial-gradient(at bottom, #73D6F5 12%, #1E90FF)
+} */
+.fb-profile-block-thumb{
+  display: block;
+  height: 315px;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+}
+.fb-profile-block-menu {
+  border: 1px solid #d3d6db;
+  border-radius: 0 0 3px 3px;
+}
+.profile-img a{
+    bottom: 15px;
+    box-shadow: none;
+	display: block;
+	left: 15px;
+	padding:1px;
+	position: absolute;
+	height: 160px;
+	width: 160px;
+	background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
+	z-index:9;
+}
+.profile-img img {
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.07);
+  height:158px;
+  padding: 5px;
+  width:158px;
+}
+.profile-name {
+  bottom: 60px;
+  left: 200px;
+  position: absolute;
+}
+.profile-name h2 {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 30px;
+  max-width: 275px;
+  position: relative;
+  text-transform: uppercase;
+}
+.fb-profile-block-menu{
+  height: 44px;
+  position: relative;
+  width:100%;
+  overflow:hidden;
+ }
+.block-menu {
+  clear: right;
+  padding-left: 205px;
+}
+.block-menu ul{
+	margin:0;
+	padding:0;
+}
+.block-menu ul li{
+	display:inline-block;
+}
+.block-menu ul li a {
+  border-right: 1px solid #e9eaed;
+  float: left;
+  font-size: 14px;
+  font-weight: bold;
+  height: 42px;
+  line-height: 3.0;
+  padding: 0 17px;
+  position: relative;
+  vertical-align: middle;
+  white-space: nowrap;
+  color:#4b4f56;
+  text-transform:capitalize;
+}
+.block-menu ul li:first-child a{
+  border-left: 1px solid #e9eaed;
+}
+</style>
+<div>
+    @php 
+      $st="";
+     if($list->cover){
+        $st='style="background-image:url('.url($list->cover).');"';
+     }
+    @endphp
+    <div class="container-fluid" {!! $st !!}>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="fb-profile-block">
+                <div class="fb-profile-block-thumb cover-container"></div>
+                <div class="profile-img">
+                    <a href="#">
+                        <img src="{{$list->logo ? url($list->logo):''}}" alt="" title="{{$list->title}}">        
+                    </a>
                 </div>
-              </div>
-            </div>
-            <!-- Gallery-->
-            <div class="card border-0 shadow-sm mb-4 mb-lg-5 p-2 p-lg-0">
-              <div class="card-body p-lg-5">
-                <h2 class="h3 mb-4">Gallery</h2>
-                <div class="rounded overflow-hidden mb-3">
-                  <div class="swiper tool-gallery-slider">
-                    <div class="swiper-wrapper">
-                    @if(count($list->images))
-                    @foreach($list->images as $img)
-                      <div class="swiper-slide h-auto"><a class="glightbox d-block" href="{{url($img->image)}}" data-gallery="gallery2" data-glightbox="Product item 1"><img class="img-fluid" src="{{url($img->image)}}" alt="{{$list->title}}"></a></div>
-                      @endforeach
-                      @endif
+                <div class="profile-name">
+                    <h2>{{$list->title}}</h2>
+                </div>
+                
+                <div class="fb-profile-block-menu ">
+                    <div class="block-menu">
+                        <ul>
+                            <li><a href="#">Youtube</a></li>
+                            <li><a href="#">Twitter</a></li>
+                            <li><a href="#">Instagram</a></li>
+                            <li><a href="#">Catelogue</a></li>
+                            
+                        </ul>
                     </div>
-                  </div>
+                    <div class="block-menu">
+                        <ul>
+                        <li><a href="#">Youtube</a></li>
+                            <li><a href="#">Twitter</a></li>
+                            <li><a href="#">Instagram</a></li>
+                            <li><a href="#">Catelogue</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="swiper tool-gallery-slider-thumbs">
-                  <div class="swiper-wrapper">
-                  @if(count($list->images))
-                    @foreach($list->images as $img)
-                    <div class="swiper-slide h-auto swiper-thumb-item mb-3"><img class="w-100" src="{{url($img->image)}}" alt="..."></div>
-                    @endforeach
-                      @endif
-                  </div>
-                </div>
-              </div>
             </div>
-            <!-- Video-->
-            <div class="card border-0 shadow-sm mb-4 mb-lg-5 p-2 p-lg-0">
-              <div class="card-body p-lg-5">
-                <h2 class="h3 mb-4">Watch video</h2>
-                <iframe class="w-100 border-0" height="315" src="{{$list->intro}}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
-            </div>
-            <!-- Reviews-->
-            <div class="card border-0 shadow-sm p-2 p-lg-0 d-none">
-              <div class="card-body p-lg-5">
-                <h2 class="h3 mb-4">Reviews</h2>
-                <div class="mb-4">
-                      <div class="row mb-3">
-                        <div class="col-lg-8">
-                          <div class="d-flex align-items-center"><img class="rounded-circle" src="img/author-3.png" alt="" width="40">
-                            <div class="ms-2">
-                              <h6 class="mb-0">Yuval Halevi</h6>
-                              <p class="small text-muted mb-0 fw-bold">1 March , 2019 at 3:08 pm</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-lg-4 text-lg-end">
-                          <ul class="list-inline mb-0 small ms-5 ms-lg-0">
-                            <li class="list-inline-item m-0"><i class="text-primary fas fa-star"></i></li>
-                            <li class="list-inline-item m-0"><i class="text-primary fas fa-star"></i></li>
-                            <li class="list-inline-item m-0"><i class="text-primary fas fa-star"></i></li>
-                            <li class="list-inline-item m-0"><i class="text-primary fas fa-star"></i></li>
-                            <li class="list-inline-item m-0"><i class="text-primary fas fa-star-half-alt"></i></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="row ps-5">
-                        <div class="col-12">
-                          <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                        </div>
-                      </div>
-                </div>
-                <div class="mb-4">
-                      <div class="row mb-3">
-                        <div class="col-lg-8">
-                          <div class="d-flex align-items-center"><img class="rounded-circle" src="img/author-2.png" alt="" width="40">
-                            <div class="ms-2">
-                              <h6 class="mb-0">Theodoros Moulos</h6>
-                              <p class="small text-muted mb-0 fw-bold">2 April , 2019 at 10:10 am</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-lg-4 text-lg-end">
-                          <ul class="list-inline mb-0 small ms-5 ms-lg-0">
-                            <li class="list-inline-item m-0"><i class="text-primary fas fa-star"></i></li>
-                            <li class="list-inline-item m-0"><i class="text-primary fas fa-star"></i></li>
-                            <li class="list-inline-item m-0"><i class="text-primary fas fa-star"></i></li>
-                            <li class="list-inline-item m-0"><i class="text-primary fas fa-star"></i></li>
-                            <li class="list-inline-item m-0"><i class="text-primary fas fa-star-half-alt"></i></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="row ps-5">
-                        <div class="col-12">
-                          <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                        </div>
-                      </div>
-                </div><a class="btn btn-secondary" href="#reviewPanel" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-control="reviewPanel">Add a review</a>
-                <div class="collapse" id="reviewPanel">
-                  <div class="pt-4">
-                    <form action="#!">
-                      <div class="row gy-3">
-                        <div class="col-lg-6">
-                          <label class="form-label" for="firstName">First name</label>
-                          <input class="form-control form-control-lg" id="firstName" type="text" name="first-name" placeholder="Your first name">
-                        </div>
-                        <div class="col-lg-6">
-                          <label class="form-label" for="lastName">Last name</label>
-                          <input class="form-control form-control-lg" id="firstName" type="text" name="last-name" placeholder="Your last name">
-                        </div>
-                        <div class="col-12 d-flex justify-content-start">
-                          <div class="rating">
-                            <input type="radio" name="rating-star" id="one">
-                            <label class="small mb-0" for="one"><i class="fas fa-star"></i></label>
-                            <input type="radio" name="rating-star" id="two">
-                            <label class="small mb-0" for="two"><i class="fas fa-star"></i></label>
-                            <input type="radio" name="rating-star" id="three">
-                            <label class="small mb-0" for="three"><i class="fas fa-star"></i></label>
-                            <input type="radio" name="rating-star" id="four">
-                            <label class="small mb-0" for="four"><i class="fas fa-star"></i></label>
-                            <input type="radio" name="rating-star" id="five">
-                            <label class="small mb-0" for="five"><i class="fas fa-star"></i></label>
-                          </div>
-                        </div>
-                        <div class="col-12">
-                          <label class="form-label" for="reviewMessage">Your review</label>
-                          <textarea class="form-control form-control-lg" id="reviewMessage" name="review-message" rows="5" placeholder="Add a small brief about your listing."></textarea>
-                        </div>
-                        <div class="col-12">
-                          <button class="btn btn-primary" type="submit">Post your review</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <!-- Social widget-->
-            <div class="card border-0 shadow-sm mb-4 mb-lg-5 p-2 p-lg-0">
-              <div class="card-body p-4 p-lg-5">
-                <h2 class="h3 mb-4">Social links</h2>
-                <ul class="list-inline mb-0">
-                  <li class="list-inline-item"><a class="social-link facebook" href="#!"><i class="fab fa-facebook-f"></i></a></li>
-                  <li class="list-inline-item"><a class="social-link twitter" href="#!"><i class="fab fa-twitter"></i></a></li>
-                  <li class="list-inline-item"><a class="social-link vimeo" href="#!"><i class="fab fa-vimeo"></i></a></li>
-                  <li class="list-inline-item"><a class="social-link instagram" href="#!"><i class="fab fa-instagram"></i></a></li>
-                  <li class="list-inline-item"><a class="social-link youtube" href="#!"><i class="fab fa-youtube"></i></a></li>
-                </ul>
-              </div>
-            </div>
-            <!-- Categories widget-->
-            <div class="card border-0 shadow-sm mb-4 mb-lg-5 p-2 p-lg-0">
-              <div class="card-body p-4 p-lg-5">
-                <h2 class="h3 mb-4">Categories</h2>
-                <ul class="list-inline mb-0">
-                  <li class="list-inline-item m-1"><a class="btn btn-light" href="#!">Marketing</a></li>
-                  <li class="list-inline-item m-1"><a class="btn btn-light" href="#!">CRM</a></li>
-                  <li class="list-inline-item m-1"><a class="btn btn-light" href="#!">Sales</a></li>
-                  <li class="list-inline-item m-1"><a class="btn btn-light" href="#!">Productivity</a></li>
-                </ul>
-              </div>
-            </div>
-            <!-- Tags widget-->
-            <div class="card border-0 shadow-sm mb-4 mb-lg-5 p-2 p-lg-0">
-              <div class="card-body p-4 p-lg-5">
-                <h2 class="h3 mb-4">Tags</h2>
-                <ul class="list-inline mb-0">
-                  <li class="list-inline-item m-1"><a class="btn btn-light" href="#!">Launch</a></li>
-                  <li class="list-inline-item m-1"><a class="btn btn-light" href="#!">Planning</a></li>
-                  <li class="list-inline-item m-1"><a class="btn btn-light" href="#!">Entrepreneur</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </section>
-    <!-- Related items-->
-    <section class="pb-5">
-      <div class="container pb-5">
-        <header class="text-center mb-5">
-          <h2>You May Also Be Interested In</h2>
-        </header>
-        <div class="row">
-          <div class="col-lg-4 mb-4">
-                <div class="card shadow-sm border-0 hover-transition"><a class="d-block dark-overlay card-img-top overflow-hidden tool-trending" href="#!">
-                    <div class="tool-thumb rounded-circle" href="#!"><img class="img-fluid rounded-circle" src="img/tool-thumb-1.png" alt="..." width="40"></div>
-                    <div class="featured-badge" rel="tooltip" data-placement="top" title="Featured"><i class="fas fa-bolt"></i></div>
-                    <ul class="list-inline tool-rating mb-0">
-                      <li class="list-inline-item m-0"><i class="fas fa-star text-white"></i></li>
-                      <li class="list-inline-item m-0"><i class="fas fa-star text-white 1"></i></li>
-                      <li class="list-inline-item m-0"><i class="fas fa-star text-white 2"></i></li>
-                      <li class="list-inline-item m-0"><i class="fas fa-star text-white 3"></i></li>
-                      <li class="list-inline-item m-0"><i class="fas fa-star text-white 4"></i></li>
-                    </ul>
-                    <div class="overlay-content"><img class="img-fluid" src="img/tool-bg-1.jpg" alt="..."></div></a>
-                  <div class="card-body p-4">
-                    <h3 class="h5"> <a class="stretched-link reset-anchor" href="#!">Curator</a></h3>
-                    <p class="text-muted text-sm mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore</p>
-                  </div>
+    </div>
+</div>
+<hr>
+    </div>
+        <!-- Swiper -->
+        <div class="swiper-container" style="margin-top: 20px;">
+        <h2>Photo Gallery</h2>
+            <div class="swiper-wrapper">
+            @if(count($list->images))
+            @foreach($list->images as $img)
+                <div class="swiper-slide">
+                    <a href="{{url($img->image)}}" class="grid image-link">
+                        <img src="{{url($img->image)}}" class="img-fluid" alt="{{$list->title}}">
+                    </a>
                 </div>
-          </div>
-          <div class="col-lg-4 mb-4">
-                <div class="card shadow-sm border-0 hover-transition"><a class="d-block dark-overlay card-img-top overflow-hidden tool-trending" href="#!">
-                    <div class="tool-thumb rounded-circle" href="#!"><img class="img-fluid rounded-circle" src="img/tool-thumb-2.png" alt="..." width="40"></div>
-                    <div class="featured-badge" rel="tooltip" data-placement="top" title="Featured"><i class="fas fa-bolt"></i></div>
-                    <ul class="list-inline tool-rating mb-0">
-                      <li class="list-inline-item m-0"><i class="fas fa-star text-white"></i></li>
-                      <li class="list-inline-item m-0"><i class="fas fa-star text-white 1"></i></li>
-                      <li class="list-inline-item m-0"><i class="fas fa-star text-white 2"></i></li>
-                      <li class="list-inline-item m-0"><i class="fas fa-star text-white 3"></i></li>
-                      <li class="list-inline-item m-0"><i class="fas fa-star text-white 4"></i></li>
-                    </ul>
-                    <div class="overlay-content"><img class="img-fluid" src="img/tool-bg-2.jpg" alt="..."></div></a>
-                  <div class="card-body p-4">
-                    <h3 class="h5"> <a class="stretched-link reset-anchor" href="#!">Elevatr</a></h3>
-                    <p class="text-muted text-sm mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore</p>
-                  </div>
-                </div>
-          </div>
-          <div class="col-lg-4 mb-4">
-                <div class="card shadow-sm border-0 hover-transition"><a class="d-block dark-overlay card-img-top overflow-hidden tool-trending" href="#!">
-                    <div class="tool-thumb rounded-circle" href="#!"><img class="img-fluid rounded-circle" src="img/tool-thumb-3.png" alt="..." width="40"></div>
-                    <div class="featured-badge" rel="tooltip" data-placement="top" title="Featured"><i class="fas fa-bolt"></i></div>
-                    <ul class="list-inline tool-rating mb-0">
-                      <li class="list-inline-item m-0"><i class="fas fa-star text-white"></i></li>
-                      <li class="list-inline-item m-0"><i class="fas fa-star text-white 1"></i></li>
-                      <li class="list-inline-item m-0"><i class="fas fa-star text-white 2"></i></li>
-                      <li class="list-inline-item m-0"><i class="fas fa-star text-white 3"></i></li>
-                      <li class="list-inline-item m-0"><i class="fas fa-star text-white 4"></i></li>
-                    </ul>
-                    <div class="overlay-content"><img class="img-fluid" src="img/tool-bg-3.jpg" alt="..."></div></a>
-                  <div class="card-body p-4">
-                    <h3 class="h5"> <a class="stretched-link reset-anchor" href="#!">Germ.io</a></h3>
-                    <p class="text-muted text-sm mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore</p>
-                  </div>
-                </div>
-          </div>
+                @endforeach
+                @endif
+                
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination swiper-pagination-white"></div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next swiper-button-white"></div>
+            <div class="swiper-button-prev swiper-button-white"></div>
         </div>
-      </div>
+    </div>
+    <!--//END BOOKING -->
+    <!--============================= RESERVE A SEAT =============================-->
+    <section class="reserve-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>{{$list->title}}</h5>
+                    @if(isset($list->price))
+                    <p><span>Rs</span>{{$list->price}}</p>
+                    @endif
+                    <!-- <p class="reserve-description">Innovative cooking, paired with fine wines in a modern setting.</p> -->
+                </div>
+                <div class="col-md-6">
+                    <div class="reserve-seat-block">
+                        <div class="reserve-rating">
+                            <span>9.5</span>
+                        </div>
+                        <div class="review-btn">
+                            <a id="addReview" class="btn btn-outline-danger">WRITE A REVIEW</a>
+                            <span>34 reviews</span>
+                        </div>
+                        <div class="reserve-btn">
+                            <div class="featured-btn-wrap">
+                                <a href="#" class="btn btn-danger">BOOK SERVICE</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+    <!--//END RESERVE A SEAT -->
+    <!--============================= BOOKING DETAILS =============================-->
+    <section class="light-bg booking-details_wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 responsive-wrap">
+                    <div class="booking-checkbox_wrap">
+                        <div class="booking-checkbox">
+                        {!! html_entity_decode($list->description) !!}
+                            <hr>
+                        </div>
+                        <div class="row d-none">
+                            <div class="col-md-4">
+                                <label class="custom-checkbox">
+                        <span class="ti-check-box"></span>
+                        <span class="custom-control-description">Bike Parking</span>
+                      </label> </div>
+                            <div class="col-md-4">
+                                <label class="custom-checkbox">
+                       <span class="ti-check-box"></span>
+                       <span class="custom-control-description">Wireless Internet  </span>
+                     </label>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="custom-checkbox">
+                     <span class="ti-check-box"></span>
+                     <span class="custom-control-description">Smoking Allowed  </span>
+                   </label> </div>
+                            <div class="col-md-4">
+                                <label class="custom-checkbox">
+                    <span class="ti-check-box"></span>
+                    <span class="custom-control-description">Street Parking</span>
+                  </label>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="custom-checkbox">
+                   <span class="ti-check-box"></span>
+                   <span class="custom-control-description">Special</span>
+                 </label> </div>
+                            <div class="col-md-4">
+                                <label class="custom-checkbox">
+                  <span class="ti-check-box"></span>
+                  <span class="custom-control-description">Accepts Credit cards</span>
+                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="booking-checkbox_wrap mt-4">
+                        <h5>{{count($list->reviews)}} Reviews</h5>
+                        <hr>
+                        @if(count($list->reviews)>0)
+                         @foreach($list->reviews as $review)
+                        <div class="customer-review_wrap">
+                            <div class="customer-img">
+                                <img src="{{$review->user->pic!='' ? url($review->user->pic) : url('images/dpuser.png') }}" class="img-fluid" alt="#" style="width:60px;">
+                                <p>{{$review->user->name}}</p>
+                                <!-- <span>Reviews</span> -->
+                            </div>
+                            <div class="customer-content-wrap">
+                                <div class="customer-content">
+                                    <div class="customer-review">
+                                        <h6>{{$review->title}}</h6>
+                                        @for($i=1;$i<=$review->star;$i++)
+                                        <span></span>
+                                        @endfor
+                                        @for($i=1;$i<=(5-$review->star);$i++)
+                                        <span class="round-icon-blank"></span>
+                                        @endfor
+                                        
+                                        <p>{{$review->created_at}}</p>
+                                    </div>
+                                    <!-- <div class="customer-rating">8.0</div> -->
+                                </div>
+                                <p class="customer-text">
+                                    {{$review->comment}}
+                                </p>
+                               @if(count($review->pics))
+                                <ul>
+                                    @foreach($review->pics as $pic)
+                                    <li><img src="{{url($pic->img)}}" class="img-fluid" alt="#"></li>
+                                    @endforeach
+                                </ul>
+                                @endif
+                                <span>{{$review->likes}} people marked this review as helpful</span>
+                                <a onclick="markHelp(this);" style="cursor: pointer;" data-review="{{$review->id}}"><span class="icon-like"></span>Helpful</a>
+                            </div>
+                        </div>
+                        <hr>
+             @endforeach
+             @endif
+                        
+                    </div>
+                </div>
+                <div class="col-md-4 responsive-wrap">
+                    <div class="contact-info">
+                        <!-- <img src="images/map.jpg" class="img-fluid" alt="#"> -->
+                        <a href="https://maps.googleapis.com/maps/api/directions/json?destination={{urlencode($list->location)}}&origin=new+delhi" class="btn btn-primary text-center">Get Directions <i class="fa fa-map"></i></a>
+                        <div class="address">
+                            <span class="icon-location-pin"></span>
+                            <p> {{$list->location}}<br> {{$list->cityname->city}},<br>{{$list->statename->state}} ,{{$list->zip}}</p>
+                        </div>
+                        <div class="address">
+                            <span class="icon-screen-smartphone"></span>
+                            <p> <a href="tel:{{$list->phone}}" target="_blank">{{$list->phone}}</a></p>
+                        </div>
+                        <div class="address">
+                            <span class="icon-link"></span>
+                            <p><a href="{{$list->website}}">{{$list->website}}</a></p>
+                        </div>
+                        <div class="address">
+                            <span class="icon-clock"></span>
+                            <p>Mon - Sun 09:30 am - 05:30 pm <br>
+                                <span class="open-now">OPEN NOW</span></p>
+                        </div>
+                        <a href="#" class="btn btn-outline-danger btn-contact">SEND A MESSAGE</a>
+                    </div>
+                    <div class="follow">
+                        <div class="follow-img">
+                            <img src="{{$list->user->pic!='' ? url($list->user->pic) : url('images/dpuser.png') }}" class="img-fluid" alt="{{$list->user->name}}" style="width:80px;">
+                            <h6>{{$list->user->name}}</h6>
+                            <!-- <span>New York</span> -->
+                        </div>
+                        <ul class="social-counts">
+                            <li>
+                                <h6>26</h6>
+                                <span>Listings</span>
+                            </li>
+                            <li>
+                                <h6>326</h6>
+                                <span>Followers</span>
+                            </li>
+                            <li>
+                                <h6>12</h6>
+                                <span>Followers</span>
+                            </li>
+                        </ul>
+                        <a href="#">FOLLOW</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
 @endsection

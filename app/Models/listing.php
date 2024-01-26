@@ -7,6 +7,7 @@ use App\Models\category;
 use App\Models\city;
 use App\Models\state;
 use App\Models\User;
+use App\Models\Review;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,6 +33,9 @@ class listing extends Model
 
     public function user(){
         return $this->hasOne(User::class,'id','user_id');
+    }
+    public function reviews(){
+        return $this->hasMany(Review::class,'list_id');
     }
     public  function getShortDesc(){
          $dec=strip_tags(htmlspecialchars_decode($this->description));

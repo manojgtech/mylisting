@@ -195,5 +195,21 @@ class HomeController extends Controller
          echo json_encode(['data'=>$cities]);
 
      }
+
+     
+
+     public function alllists(Request $request){
+        $data['cities']=city::all();
+        $data['cats']=category::leftJoin('listings',function($query){
+            $query->on("categories.id",'=',"listings.category");
+        })->select("category","name",'categories.id',DB::raw('count(listings.category) as c'))->groupBy("categories.id")->orderBy("c","desc")->get();
+        $data['tlist']=listing::latest()->paginate(12);
+        $data['flist']=listing::where('featured',1)->get();
+        $data['theme']='theme2';
+        return view("alllist",$data);
+         
+     }
+
+     
     
 }

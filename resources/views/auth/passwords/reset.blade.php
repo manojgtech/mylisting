@@ -9,6 +9,10 @@
     background-attachment: scroll;
     background-size: cover;
     }
+    .container-fluid{
+         padding-left:0px;
+         padding-right:0px;
+    }
 </style>
 
 <div class="container" style="margin-top: 120px;margin-bottom:70px;">
